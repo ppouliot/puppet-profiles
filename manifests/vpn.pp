@@ -1,4 +1,4 @@
-class profiles::vpnserver {
+class vpnserver {
 #  class {'basenode':}
 #  class {'basenode::dhcp2static':}
   class {'sensu':}
