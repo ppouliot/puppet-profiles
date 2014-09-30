@@ -1,8 +1,8 @@
 class profiles::vpnserver {
 #  class {'basenode':}
 #  class {'basenode::dhcp2static':}
-  class {'sensu':}
-  class{'sensu_client_plugins': require => Class['sensu'],}
+#  class {'sensu':}
+#  class{'sensu_client_plugins': require => Class['sensu'],}
 
   package {'bridge-utils':
     ensure => latest,
@@ -106,14 +106,14 @@ class profiles::vpnserver {
   class {'quagga':
     ospfd_source => 'puppet:///extra_files/ospfd.conf',
   }
-#  file {'/etc/quagga/zebra.conf':
-#    ensure  => file,
-#    owner   => 'quagga',
-#    group   => 'quagga',
-#    mode    => '0640',
-#    source  => 'puppet:///extra_files/zebra.conf',
-#    notify  => Service['zebra'],
-#    require => Class['quagga'],
-#    before  => Service['zebra'],
-#  }
+  file {'/etc/quagga/zebra.conf':
+    ensure  => file,
+    owner   => 'quagga',
+    group   => 'quagga',
+    mode    => '0640',
+    source  => 'puppet:///extra_files/zebra.conf',
+    notify  => Service['zebra'],
+    require => Class['quagga'],
+    before  => Service['zebra'],
+  }
 }
