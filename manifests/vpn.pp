@@ -1,4 +1,4 @@
-class vpnserver {
+node /vpn.*/ {
 #  class {'basenode':}
 #  class {'basenode::dhcp2static':}
   class {'sensu':}
@@ -94,15 +94,14 @@ class vpnserver {
     server => 'hypervci',
     remote_host => '64.119.130.115',
   }
-#  openvpn::client_specific_config {'ppouliot':
-#  openvpn::client_specific_config {'ppouliot':
-#    server   => 'hypervci',
-#    ifconfig => '10.253.253.1 255.255.255.0',
-#    route    => ['route 10.21.7.0 255.255.255.0 10.253.253.1',
-#                'route 172.18.2.0 255.255.255.0 10.253.253.1'],
-#    redirect_gateway => true,
-#  }
-
+  openvpn::client {'seansp':
+    server => 'hypervci',
+    remote_host => '64.119.130.115',
+  }
+  openvpn::client {'lloydj':
+    server => 'hypervci',
+    remote_host => '64.119.130.115',
+  }
   class {'quagga':
     ospfd_source => 'puppet:///extra_files/ospfd.conf',
   }

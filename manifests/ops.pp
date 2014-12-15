@@ -1,0 +1,4 @@
+class ops {
+    class {'osticket':}
+  }
+
