@@ -1,10 +1,9 @@
 case $manufacturer {
   'Dell Inc.':{
-    include dell_openmanage
-    include basenode::ipmitools
+#    include dell_openmanage
+#    include basenode::ipmitools
 
-    notify {"${hostname} is a Dell!":
-    }
+    $msg_product = "${hostname} is a ${manufacturer} ${productname}"
     if $ipaddress =~ /([001-254\.])/{ 
       $octet1 => $1
       $octet2 => $2
@@ -19,37 +18,44 @@ case $manufacturer {
 #      require   => Package['ipmi-tool'],
 #    }
     case $productname {
-     
-      $msg_product = "${hostname} is a ${manufacturer} ${productname}"
 
       'PowerEdge M600': {
-        notify {$msg_product:}
+        warn($msg_product)
        # Insert M600 Classes or logic here
 
       }
 
       'PowerEdge M605': {
-        notify {$msg_product:}
+        warn($msg_product)
        # Insert M605 Classes or logic here
 
       }
 
       'PowerEdge M610': {
+        warn($msg_product)
         notify {$msg_product:}
        # Insert M610 Classes here
 
       }
       'PowerEdge 2950': {
+        warn($msg_product)
         notify {$msg_product:}
        # Insert 2950 Classes here
       }
       'PowerEdge R200': {
+        warn($msg_product)
         notify {$msg_product:}
        # Insert R200 Classes here
       }
       'PowerEdge R710': {
-        notify {$msg_product:}
+        warn($msg_product)
        # Insert R710 Classes here
       }
-
-   }
+      default:{
+        warn("this is an unknown Dell product ${productname}")
+      }
+    }
+  default:{
+    warn("!!! Manufacturer: ${manufacturer} is not Dell Inc. !!!")
+  }
+}
