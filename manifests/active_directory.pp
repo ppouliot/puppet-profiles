@@ -105,6 +105,6 @@ case $osfamily {
 #        dsrmpassword  => 'H@rd24G3t',
 #        notify => Reboot['ad_installed'],
 #      }
-#    }
+    }
 }
 
