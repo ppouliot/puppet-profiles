@@ -12,12 +12,12 @@ case $manufacturer {
       $octet4 => $4
     }
 
-    $default_ipmi_ipaddress = "$10.99.99.${octet4}",
-    exec {'ipmi-tool_dump_mac_addresses':
-      command   => 'ipmitool -H  $default_ipmi_address -U $ipmi_user -P ipmi_password delloem mac |grep [0-9]:',
-      logoutput => true
-      require   => Package['ipmi-tool'],
-    }
+#    $default_ipmi_ipaddress = "$10.99.99.${octet4}",
+#    exec {'ipmi-tool_dump_mac_addresses':
+#      command   => 'ipmitool -H  $default_ipmi_address -U $ipmi_user -P ipmi_password delloem mac |grep [0-9]:',
+#      logoutput => true
+#      require   => Package['ipmi-tool'],
+#    }
     case $productname {
      
       $msg_product = "${hostname} is a ${manufacturer} ${productname}"
@@ -41,12 +41,15 @@ case $manufacturer {
       }
       'PowerEdge 2950': {
         notify {$msg_product:}
-       # Insert M610 Classes here
+       # Insert 2950 Classes here
       }
       'PowerEdge R200': {
         notify {$msg_product:}
-       # Insert M610 Classes here
+       # Insert R200 Classes here
       }
-
+      'PowerEdge R710': {
+        notify {$msg_product:}
+       # Insert R710 Classes here
+      }
 
    }
