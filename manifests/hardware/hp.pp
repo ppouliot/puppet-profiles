@@ -18,6 +18,10 @@ class profiles::hp {
                   notice("$kvm_minimum_requirement")
                   $kvm_hardware     = 'minimum'
                 }
+                '11674.64':{
+                  notice("$hyperv_minimum_requirement")
+                  $hyperv_hardware  = 'minimum'
+                }
                 '7442.41':{
                   notice("$hyperv_minimum_requirement")
                   $hyperv_hardware  = 'minimum'
