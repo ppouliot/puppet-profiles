@@ -3,32 +3,37 @@ class profiles::hp {
   $msg_product                   = "${fqdn} is a ${manufacturer} ${productname}"
   $hyperv_minimimum_requirement  = "${fqdn} has ${memorysize} RAM and meets the minimum requirement for Hyper-V CI workloads"
   $kvm_minimimum_requirement     = "${fqdn} has ${memorysize} RAM meets the minimum requirement for KVM CI workloads"
-  $insufficient_resources        = "${fqdn} has insufficient resources for I workloads"
+  $kvm_insufficient_resources    = "${fqdn} has insufficient resources for KVM CI workloads"
+  $hyperv_insufficient_resources = "${fqdn} has insufficient resources for Hyper-V CI workloads"
 
   case $virtual {
     'physical':{
       case $manufacturer {
         'HP':{
           case $productname {
+
             'ProLiant DL140 G3':{
               notice($msg_product)
-              case $memorysize_mb {
 
+              #Basic memory size tests and notification
+              ##
+              case $memorysize_mb {
                 '19988.54':{
                   notice("$kvm_minimum_requirement")
-                  $kvm_hardware     = 'minimum'
+                  notice("$hyperv_minimum_requirement")
                 }
                 '11674.64':{
+                  notice("$kvm_minimum_requirement")
                   notice("$hyperv_minimum_requirement")
-                  $hyperv_hardware  = 'minimum'
                 }
                 '7442.41':{
                   notice("$hyperv_minimum_requirement")
-                  $hyperv_hardware  = 'minimum'
+                  warning("$kvm_insufficient_resources")
                 }
 
                 '3829.62':{
-                  warning("$insufficient_resources")
+                  notice("$hyperv_minimum_requirement")
+                  warning("$kvm_insufficient_resources")
                 }  
 
               }
@@ -47,13 +52,6 @@ class profiles::hp {
           }
           default:{
             warning("!!! Manufacturer: ${manufacturer} is not HP")
-          }
-
-          case $memorysize_mb {
-            '7442.41':{
-            }
-            '3829.62':{
-            }  
           }
 
         }
