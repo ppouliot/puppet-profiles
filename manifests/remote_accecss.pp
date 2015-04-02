@@ -18,11 +18,14 @@ class profiles::remote_access () {
           'PermitRootLogin' => 'yes',
         }
       }
+      $remote_access_enabled = 'puppet_managed'
     }
 
     'Windows':{
       notice( $remote_access_alert )
-      warning("WINDOWS NEEDS REMOTE ACCESS")
+      ## TODO Add WinRM Here
+      fail("WINDOWS NEEDS REMOTE ACCESS")
+      $remote_access_enabled = 'puppet_managed'
     }
 
     default:{
