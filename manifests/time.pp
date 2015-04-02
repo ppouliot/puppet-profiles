@@ -10,8 +10,8 @@ class profiles::time ( $ntpservers, $timezone ){
 
   validate_re($::kernel, '(^Linux|Windows)$', 'This Module only works on Linux and Windows Kernels.')
 
-  $site_ntp_alert   = "Fulling Site requirements for ${::kernel} NTP configuration on ${::fqdn}",
-  $site_ntp_failure = "FAILURE: ${::fqdn} failed to meet the requirements to operate in this site.
+  $site_ntp_alert   = "Fulling Site requirements for ${::kernel} NTP configuration on ${::fqdn}"
+  $site_ntp_failure = "FAILURE: ${::fqdn} failed to meet the requirements to operate in this site."
 
   case $kernel {
 
