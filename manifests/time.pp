@@ -19,7 +19,7 @@ class profiles::time ( $ntpservers, $timezone ){
       notice( $site_ntp_alert )
       class {'ntp':
         servers => [$ntp_servers],
-      } ->
+      }
       $network_time = 'puppet_managed'
     }
 
@@ -30,10 +30,8 @@ class profiles::time ( $ntpservers, $timezone ){
       }
       $network_time = 'puppet_managed'
     }
-
     default:{
       fail("${::fqdn} doesn't meet the requirements to operate in the site.")
-      $network_time = undef
     }
   }
 
