@@ -8,7 +8,7 @@ class profiles::time ( $ntpservers, $timezone ){
   validate_string( $ntpservers, 'No ntp servers are defined.'  )
   validate_string( $timezone, '(^UTC)$', 'UTC Timezone is required for managed nodes' )
 
-  validate_re($::kernel, '(^Linux|Windows)$', 'This Module only works on Linux and Window's Kernels.')
+  validate_re($::kernel, '(^Linux|Windows)$', 'This Module only works on Linux and Windows Kernels.')
 
   $site_ntp_alert   = "Fulling Site requirements for ${::kernel} NTP configuration on ${::fqdn}",
   $site_ntp_failure = "FAILURE: ${::fqdn} failed to meet the requirements to operate in this site.
