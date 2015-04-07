@@ -14,6 +14,7 @@ class profiles::hp {
 
             'ProLiant DL140 G3':{
               notice($msg_product)
+              warning("Default manufacturer IPMI User: admin Password: admin from ${manufacturer}")
 
               #Basic memory size tests and notification
               ##
