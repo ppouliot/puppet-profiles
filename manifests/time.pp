@@ -23,7 +23,7 @@ class profiles::time ( $ntpservers, $timezone ){
       $network_time = 'puppet_managed'
     }
 
-    'Windows':{
+    'windows':{
       notice( $site_ntp_alert )
       class {'windows_time':
         servers => [$ntp_servers],
