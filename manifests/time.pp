@@ -25,13 +25,13 @@ class profiles::time ( $ntpservers, $timezone ){
 
     'windows':{
       notice( $site_ntp_alert )
-#      class {'windows_time':
+      class {'windows_time':
 #        servers => [$ntp_servers],
-#      }
+      }
       $network_time = 'puppet_managed'
     }
     default:{
-      fail("${::fqdn} doesn't meet the requirements to operate in the site.")
+      fail("${$kernel} doesn't meet the requirements to operate in the site.")
     }
   }
 
