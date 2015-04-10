@@ -14,15 +14,15 @@ class profiles::tfs () {
       notice( $tfs_alert )
       $tfs_location = '/opt/tfs'
       # Symlink to tf
-      file {"${tfs_location}/TEE-CLC-10.0.0/tf":
+      file {'/usr/local/bin/tf':
         ensure  => link,
-        target  => '/usr/local/bin/tf',
+        target  => "${tfs_location}/TEE-CLC-10.0.0/tf",
         require => Staging::Deploy['TEE-CLC-10.0.0.zip'],
       }
       # Symlink to wit
-      file {"${tfs_location}/TEE-CLC-10.0.0/wit":
+      file {'/usr/local/bin/wit':
         ensure  => link,
-        target  => '/usr/local/bin/wit',
+        target  => "${tfs_location}/TEE-CLC-10.0.0/wit",
         require => Staging::Deploy['TEE-CLC-10.0.0.zip'],
       }
     }
