@@ -13,6 +13,11 @@ class profiles::tfs () {
     'Linux':{
       notice( $tfs_alert )
       $tfs_location = '/opt/tfs'
+
+      file {"${tfs_location}/TEE-CLC-10.0.0/tf":
+        ensure => link,
+        tareget => '/usr/local/bin/tf',
+      }
     }
 
     'Windows':{
