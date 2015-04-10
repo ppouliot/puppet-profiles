@@ -6,25 +6,14 @@
 # https://www.microsoft.com/en-us/download/confirmation.aspx?id=4240&6B49FDFB-8E5B-4B07-BC31-15695C5A2143=1
 class profiles::tfs () {
   validate_re($::kernel, '(^Linux|Windows)$', 'This Module only works on Linux and Windows Kernels.')
-  $tfs_alert   = "Fullfilling ** TFS ** site requirements based on host ${::fqdn} detection of ${::kernel} kernel"
-  $tfs_failure = "FAILURE: ${::kernel} failed to meet the requirements to operate in this site."
+  $tfs_alert    = "Fullfilling ** TFS ** site requirements based on host ${::fqdn} detection of ${::kernel} kernel"
+  $tfs_failure  = "FAILURE: ${::kernel} failed to meet the requirements to operate in this site."
+  $tfs_path  = "${tfs_location}/TEE-CLC-10.0.0/"
 
   case $kernel {
     'Linux':{
       notice( $tfs_alert )
       $tfs_location = '/opt/tfs'
-      # Symlink to tf
-      file {'/usr/local/bin/tf':
-        ensure  => link,
-        target  => "${tfs_location}/TEE-CLC-10.0.0/tf",
-        require => Staging::Deploy['TEE-CLC-10.0.0.zip'],
-      }
-      # Symlink to wit
-      file {'/usr/local/bin/wit':
-        ensure  => link,
-        target  => "${tfs_location}/TEE-CLC-10.0.0/wit",
-        require => Staging::Deploy['TEE-CLC-10.0.0.zip'],
-      }
     }
 
     'Windows':{
