@@ -13,10 +13,15 @@ class profiles::tfs () {
     'Linux':{
       notice( $tfs_alert )
       $tfs_location = '/opt/tfs'
-
+      # Symlink to tf
       file {"${tfs_location}/TEE-CLC-10.0.0/tf":
         ensure => link,
         tareget => '/usr/local/bin/tf',
+      }
+      # Symlink to wit
+      file {"${tfs_location}/TEE-CLC-10.0.0/wit":
+        ensure => link,
+        tareget => '/usr/local/bin/wit',
       }
     }
 
