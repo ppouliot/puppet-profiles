@@ -28,7 +28,7 @@ class profiles::mgmt_tools (){
     'Linux':{
       notice( $site_mt_alert )
       package{[
-        'expect','screen','minicom','ipmitool',$openipmi_package]:
+        'wget','curl','expect','screen','minicom','ipmitool',$openipmi_package]:
         ensure => latest,
       }
     }
