@@ -5,7 +5,7 @@
 # windows and linux nodes
 #
 class profiles::remote_access () {
-  validate_re($::kernel, '(^Linux|Windows)$', 'This Module only works on Linux and Windows Kernels.')
+  validate_re($::kernel, '(^Linux|windows)$', 'This Module only works on Linux and Windows Kernels.')
   $remote_access_alert   = "Fullfilling ** Remote Access ** site requirements based on host ${::fqdn} detection of ${::kernel} kernel"
   $remote_access_failure = "FAILURE: ${::fqdn} failed to meet the requirements to operate in this site."
 
@@ -21,7 +21,7 @@ class profiles::remote_access () {
       $remote_access_enabled = 'puppet_managed'
     }
 
-    'Windows':{
+    'windows':{
       notice( $remote_access_alert )
       ## TODO Add WinRM Here
       fail("WINDOWS NEEDS REMOTE ACCESS")
