@@ -47,9 +47,6 @@ class profiles::hp {
             'ProLiant SE316M1R2':{
               notice($msg_product)
             }
-            'ProLiant DL360 G6':{
-              notice($msg_product)
-            }
             default:{
               warning("this is an unknown HP product ${productname} in our infrastructure")
             } 
