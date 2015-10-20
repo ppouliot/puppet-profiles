@@ -50,6 +50,10 @@ class profiles::hp {
             'ProLiant DL360 G6':{
               notice($msg_product)
             }
+            'ProLiant DL580 G5':{
+              notice($msg_product)
+              $hp_spp_iso_latest = 'spp2014020b'
+            }
             default:{
               warning("this is an unknown HP product ${productname} in our infrastructure")
             } 

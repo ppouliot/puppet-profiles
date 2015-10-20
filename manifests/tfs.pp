@@ -30,19 +30,19 @@ class profiles::tfs () {
   }
   # TFS Eclipse Plugin
   staging::deploy{'TFSEclipsePlugin-UpdateSiteArchive-10.0.0.zip':
-    source => 'http://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TFSEclipsePlugin-UpdateSiteArchive-10.0.0.zip',
+    source => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TFSEclipsePlugin-UpdateSiteArchive-10.0.0.zip',
     target => $tfs_location,
     require => File[$tfs_location],
   }
   # Microsoft Visual Studio Team Explorer Everywhere 2010
   staging::deploy{'TEE-CLC-10.0.0.zip':
-    source => 'http://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TEE-CLC-10.0.0.zip',
+    source => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TEE-CLC-10.0.0.zip',
     target => $tfs_location,
     require => File[$tfs_location],
   }
   staging::file{'InstallTEE.htm':
     target => $tfs_location,
-    source => 'http://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/InstallTEE.htm',
+    source => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/InstallTEE.htm',
     require => File[$tfs_location],
   }
 }
