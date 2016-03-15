@@ -14,10 +14,10 @@ class profiles::mgmt_tools (){
   case $::osfamily {
     'Redhat':{
       $openipmi_package = 'OpenIPMI'
-     }
+    }
     'Debian':{
       $openipmi_package = 'openipmi'
-     }
+    }
     default:{
       notice("OSFAMILY: ${::osfamily} doesn't require this change.")
     }
