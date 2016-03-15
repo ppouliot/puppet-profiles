@@ -9,16 +9,15 @@ class profiles::java_infra () {
   $java_alert   = "Fullfilling ** JAVA ** site requirements based on host ${::fqdn} detection of ${::kernel} kernel"
   $java_failure = "FAILURE: ${::fqdn} failed to meet the requirements to operate in this site."
 
-  case $kernel {
+  case $::kernel {
     'Linux':{
       notice( $java_alert )
       class{'java':}
     }
-
     'Windows':{
       notice( $java_alert )
       ## TODO Add windows_java Here
-      warning("WINDOWS NEEDS A CLEAN JAVA MODULE")
+      warning('WINDOWS NEEDS A CLEAN JAVA MODULE')
     }
     default:{
       fail("${::fqdn} doesn't meet the requirements to operate in the site.")
