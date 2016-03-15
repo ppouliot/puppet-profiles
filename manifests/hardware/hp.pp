@@ -67,7 +67,7 @@ class profiles::hp {
         }
       }
       default:{
-        warning("!!! Virtual is set to ${virtual} and must be physical")
+        warning("!!! Virtual is set to ${::virtual} and must be physical")
       }
     }
   }
