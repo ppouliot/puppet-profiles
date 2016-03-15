@@ -222,7 +222,7 @@ class profiles::centos::6::yum_repositories{
         gpgkey   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-Debug-6',
       }
     }
-   default:{
-    warning("this is not needed for your $operatingsystem")
-   }
+    default:{
+      warning("this is not needed for your ${::operatingsystem}")
+    }
 }
