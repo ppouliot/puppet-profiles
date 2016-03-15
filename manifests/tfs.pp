@@ -9,8 +9,7 @@ class profiles::tfs () {
   $tfs_alert    = "Fullfilling ** TFS ** site requirements based on host ${::fqdn} detection of ${::kernel} kernel"
   $tfs_failure  = "FAILURE: ${::kernel} failed to meet the requirements to operate in this site."
   $tfs_path  = "${tfs_location}/TEE-CLC-10.0.0/"
-
-  case $kernel {
+  case $::kernel {
     'Linux':{
       notice( $tfs_alert )
       $tfs_location = '/opt/tfs'
@@ -30,19 +29,19 @@ class profiles::tfs () {
   }
   # TFS Eclipse Plugin
   staging::deploy{'TFSEclipsePlugin-UpdateSiteArchive-10.0.0.zip':
-    source => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TFSEclipsePlugin-UpdateSiteArchive-10.0.0.zip',
-    target => $tfs_location,
+    source  => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TFSEclipsePlugin-UpdateSiteArchive-10.0.0.zip',
+    target  => $tfs_location,
     require => File[$tfs_location],
   }
   # Microsoft Visual Studio Team Explorer Everywhere 2010
   staging::deploy{'TEE-CLC-10.0.0.zip':
-    source => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TEE-CLC-10.0.0.zip',
-    target => $tfs_location,
+    source  => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/TEE-CLC-10.0.0.zip',
+    target  => $tfs_location,
     require => File[$tfs_location],
   }
   staging::file{'InstallTEE.htm':
-    target => $tfs_location,
-    source => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/InstallTEE.htm',
+    target  => $tfs_location,
+    source  => 'https://download.microsoft.com/download/9/8/7/987D6B7C-F577-4297-8F60-E4B6A9EA4BF9/InstallTEE.htm',
     require => File[$tfs_location],
   }
 }
