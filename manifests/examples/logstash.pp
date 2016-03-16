@@ -11,7 +11,7 @@ node 'logstash' {
   }
 
 #  class {'logstash': }
-  class {'logstash_shim': 
+  class {'logstash_shim':
     discover_nodes => ["${::fqdn}:9200"],
     require        => Class['python'],
   }
