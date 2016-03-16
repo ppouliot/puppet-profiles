@@ -1,3 +1,4 @@
+# ==Class: vpnserver_profile
 class vpnserver {
 
   # Required for the fact to work
@@ -7,7 +8,7 @@ class vpnserver {
 #  }
 
   package {'bridge-utils':
-    ensure => latest,
+    ensure  => latest,
     require => Package['rubysl-ipaddr'],
   }
 
@@ -22,13 +23,13 @@ class vpnserver {
 #    proto        => 'tcp',
     server       => '10.253.253.0 255.255.255.0',
     push         => [
-#                     'route 10.21.7.0 255.255.255.0 10.253.353.1',
-                     'redirect-gateway def1 bypass-dhcp',
-                     'dhcp-option DNS 10.21.7.1',
-                     'dhcp-option DNS 8.8.8.8',
-                     'dhcp-option DNS 8.8.4.4',
-#                     'topology subnet'
-                    ],
+#     'route 10.21.7.0 255.255.255.0 10.253.353.1',
+      'redirect-gateway def1 bypass-dhcp',
+      'dhcp-option DNS 10.21.7.1',
+      'dhcp-option DNS 8.8.8.8',
+      'dhcp-option DNS 8.8.4.4',
+#     'topology subnet'
+    ],
 #    push         => ['route 10.21.7.0 255.255.255.0'],
     require      => Package['bridge-utils'],
   }
@@ -37,7 +38,7 @@ class vpnserver {
     chain    => 'POSTROUTING',
     jump     => 'MASQUERADE',
     proto    => 'all',
-    outiface => "eth0",
+    outiface => 'eth0',
     source   => '10.253.253.0/24',
     table    => 'nat',
   }
@@ -46,15 +47,15 @@ class vpnserver {
     proto  => 'udp',
     sport  => 'domain'
   }
-
-define vpn_remote_user ( $openvpn_server_name, $openvpn_remote_host ){
+# vpn
+define vpn_remote_user ( $::openvpn_server_name, $::openvpn_remote_host ){
 
   Openvpn::Client[
 #    server      => $openvpn_server_name,
-    server      => $openvpn_server_name,
+    server      => $::openvpn_server_name,
 #    remote_host => $openvpn_remote_host,
-    remote_host => $openvpn_remote_host,
-  } 
+    remote_host => $::openvpn_remote_host,
+  }
 
   openvpn::client {$name: }
 }

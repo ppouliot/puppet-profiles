@@ -1,4 +1,5 @@
+# == Class: profiles::ops
 class ops {
-    class {'osticket':}
-  }
+  class {'osticket':}
+}
 

@@ -3,7 +3,7 @@
 ##
 
 node /^(openstack-controller).*/{
-  class{'basenode':}  
+  class{'basenode':}
   class{'sensu':}
   class{'sensu_client_plugins': require => Class['sensu'],}
 #  class{'basenode::dhcp2static':}  
@@ -53,13 +53,13 @@ node /^(openstack-controller).*/{
 
 }
 node /^(neutron-controller).*/{
-  class{'basenode':}  
+  class{'basenode':}
   class{'sensu':}
   class{'sensu_client_plugins': require => Class['sensu'],}
 #  class{'basenode::dhcp2static':}  
-  class{'jenkins::slave': 
+  class{'jenkins::slave':
     masterurl => 'http://jenkins.openstack.tld:8080',
   }
-  class{'packstack::yumrepo':}  
+  class{'packstack::yumrepo':}
 }
 # End Packstack nodes

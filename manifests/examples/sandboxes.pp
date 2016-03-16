@@ -12,7 +12,7 @@ node 'sandbox00.openstack.tld' {
     'parameterized-trigger': ;
   }
   package {'fpm':
-    ensure => installed,
+    ensure   => installed,
     provider => 'gem',
   }
   $jenkinsconfig_path = '/var/lib/jenkins/'
@@ -47,7 +47,6 @@ node 'sandbox00.openstack.tld' {
 #    require => File["${jenkinsconfig_path}users"],
 #    owner   => 'jenkins',
 #  }
- 
 }
 
 #node /sandbox[0-9]+.*/{
