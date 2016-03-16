@@ -1,4 +1,4 @@
-case $ipaddress_idrac { 
+case $ipaddress_idrac {
   '10.99.99.36':{}
   '10.99.99.250':{}
   '10.99.99.3':{}

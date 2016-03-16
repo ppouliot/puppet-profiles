@@ -1,9 +1,8 @@
-
 node /^(frankenstein).*/{
   $graphical_admin = ['blackbox',
                       'ipmitool',
-                      'freeipmi-tools', 
-                      'tightvncserver', 
+                      'freeipmi-tools',
+                      'tightvncserver',
                       'freerdp',
                       'freerdp-x11',
                       'ubuntu-virt-mgmt']

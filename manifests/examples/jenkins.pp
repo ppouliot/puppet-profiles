@@ -52,7 +52,7 @@ node /jenkins.*/ {
 # Install fpm
 
   package {'fpm':
-    ensure => installed,
+    ensure   => latest,
     provider => 'gem',
   }
 
@@ -67,14 +67,14 @@ node /jenkins.*/ {
   file { "${jenkinsconfig_path}config.xml":
     ensure  => link,
     target  => "${jenkinsconfig_path}users/config_base.xml",
-	require => File["${jenkinsconfig_path}users"],
+    require => File["${jenkinsconfig_path}users"],
     owner   => 'jenkins',
   }
 
   file { "${jenkinsconfig_path}users":
     ensure  => directory,
-    source  => "puppet:///extra_files/jenkins/users",
-    recurse => remote,
+    source  => 'puppet:///extra_files/jenkins/users',
+    recurse => 'remote',
     replace => false,
     purge   => false,
     owner   => 'jenkins',
