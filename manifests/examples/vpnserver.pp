@@ -1,3 +1,4 @@
+# == Class: profiles::vpnserver
 class profiles::vpnserver {
 #  class {'basenode':}
 #  class {'basenode::dhcp2static':}
@@ -18,21 +19,21 @@ class profiles::vpnserver {
 #    proto        => 'tcp',
     server       => '10.253.253.0 255.255.255.0',
     push         => [
-#                     'route 10.21.7.0 255.255.255.0 10.253.353.1',
-                     'redirect-gateway def1 bypass-dhcp',
-                     'dhcp-option DNS 10.21.7.1',
-                     'dhcp-option DNS 8.8.8.8',
-                     'dhcp-option DNS 8.8.4.4',
-#                     'topology subnet'
+#     'route 10.21.7.0 255.255.255.0 10.253.353.1',
+      'redirect-gateway def1 bypass-dhcp',
+      'dhcp-option DNS 10.21.7.1',
+      'dhcp-option DNS 8.8.8.8',
+      'dhcp-option DNS 8.8.4.4',
+#     'topology subnet'
                     ],
-#    push         => ['route 10.21.7.0 255.255.255.0'],
+#    push        => ['route 10.21.7.0 255.255.255.0'],
   }
 
   firewall { '100 snat for network openvpn':
     chain    => 'POSTROUTING',
     jump     => 'MASQUERADE',
     proto    => 'all',
-    outiface => "eth0",
+    outiface => 'eth0',
     source   => '10.253.253.0/24',
     table    => 'nat',
   }
@@ -43,55 +44,51 @@ class profiles::vpnserver {
   }
 
   openvpn::client {'ppouliot':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'nmeier':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'trogers':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'habdi':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'cloudbase':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'apilotti':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'gsamfira':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'vbud':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'avladu':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'ClaudiuNesa':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'gabrielloewen':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
   openvpn::client {'mattneely':
-    server => 'hypervci',
-    remote_host => '64.119.130.115',
-  }
-  openvpn::client {'csilva':
-    server => 'hypervci',
+    server      => 'hypervci',
     remote_host => '64.119.130.115',
   }
 #  openvpn::client_specific_config {'ppouliot':
