@@ -81,7 +81,9 @@ node /dl\d*/ {
     www_root             => '/srv/dl',
     use_default_location => false,
     require              => User['dl'],
-    vhost_cfg_append     => { autoindex => on, }
+    vhost_cfg_append     => {
+      autoindex => on,
+    }
   }
   nginx::resource::location{'/':
     ensure   => present,
@@ -119,7 +121,7 @@ node /dl\d*/ {
     }
   }
   nginx::resource::location{'~* "\.json\.gz$"':
-    ensure => present,
+    ensure              => present,
     www_root            => '/srv/dl',
     vhost               => 'dl.openstack.tld',
     location_cfg_append => {
