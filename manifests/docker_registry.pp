@@ -22,8 +22,8 @@ class profiles::docker_registry(){
   }
 
   file {'/usr/local/src/docker-registry/config.yml':
-    ensure => file,
-    source => '/usr/local/src/docker-registry/config_sample.yml',
+    ensure  => file,
+    source  => '/usr/local/src/docker-registry/config_sample.yml',
     require => Vcsrepo['/usr/local/src/docker-registry'],
   }
 
