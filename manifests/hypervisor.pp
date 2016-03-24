@@ -10,7 +10,7 @@ class profiles::hypervisor (){
   $site_hypervisor_alert   = "Fullfilling Site requirements for ${::kernel} Hypervisor configuration on ${::fqdn}"
   $site_hypervisor_failure = "FAILURE: ${::fqdn} failed to meet the hypervisor requirements to operate in this site."
 
-  case $kernel {
+  case $::kernel {
 
     'Linux':{
       notice( $site_hypervisor_alert )
@@ -21,7 +21,11 @@ class profiles::hypervisor (){
     }
 
     default:{
+<<<<<<< HEAD
       fail( $site_hypervisor_failure )
+=======
+      fail("${::kernel} doesn't meet the requirements to operate in the site.")
+>>>>>>> aaf575e541a6e2a8d17d5e400afe8b17098abc74
     }
 
   }

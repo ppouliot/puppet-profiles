@@ -11,20 +11,18 @@ class profiles::mgmt_tools (){
   $site_mt_alert   = "Fullfulling management tool installation and configuration requirements for ${::kernel} on ${::fqdn}"
   $site_mt_failure = "FAILURE: ${::fqdn} Does not meet the requirments for installation of managment tools"
 
-  case $osfamily {
+  case $::osfamily {
     'Redhat':{
-        $openipmi_package = 'OpenIPMI'
-     }
+      $openipmi_package = 'OpenIPMI'
+    }
     'Debian':{
-        $openipmi_package = 'openipmi'
-     }
+      $openipmi_package = 'openipmi'
+    }
     default:{
-      notice("OSFAMILY: ${osfamily} doesn't require this change.")
+      notice("OSFAMILY: ${::osfamily} doesn't require this change.")
     }
   }
-
-  case $kernel {
-
+  case $::kernel {
     'Linux':{
       notice( $site_mt_alert )
       package{[
@@ -32,7 +30,6 @@ class profiles::mgmt_tools (){
         ensure => latest,
       }
     }
-
     'Windows':{
       notice( $site_mt_alert )
       Package{ provider => 'chocolatey',}

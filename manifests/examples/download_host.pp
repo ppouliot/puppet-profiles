@@ -18,51 +18,43 @@ node /dl\d*/ {
     owner  => 'dl',
     group  => 'dl',
   }
- file { '/home/dl/.ssh':
+  file { '/home/dl/.ssh':
     ensure  => directory,
-    owner   => dl,
-    group   => dl,
-    mode    => 0600,
+    owner   => 'dl',
+    group   => 'dl',
+    mode    => '0600',
     require => User['dl'],
   }
-
- file { '/home/dl/.ssh/authorized_keys2':
+  file { '/home/dl/.ssh/authorized_keys2':
     ensure  => file,
-    owner   => dl,
-    group   => dl,
-    mode    => 0600,
-    source  => "puppet:///extra_files/id_dsa.pub",
+    owner   => 'dl',
+    group   => 'dl',
+    mode    => '0600',
+    source  => 'puppet:///extra_files/id_dsa.pub',
     require => User['dl'],
   }
-
   package {'git':
     ensure => present,
   }
- 
   package {'apparmor-utils':
     ensure => latest,
   }
-  
   service {'apparmor':
     ensure => running,
   }
-
   file { '/etc/apparmor.d/usr.sbin.nginx':
     ensure  => 'file',
     group   => '0',
-    mode    => '644',
+    mode    => '0644',
     owner   => '0',
     content => '# Last Modified: Mon Jan 13 12:09:16 2014
 #include <tunables/global>
-
 /usr/sbin/nginx {
   #include <abstractions/apache2-common>
   #include <abstractions/base>
-
   capability dac_override,
   capability setgid,
   capability setuid,
-
   /etc/nginx/conf.d/ r,
   /etc/nginx/conf.d/proxy.conf r,
   /etc/nginx/mime.types r,
@@ -83,93 +75,89 @@ node /dl\d*/ {
     require => Class['nginx'],
     notify  => Service['apparmor'],
   }
-
   class {'nginx':}
 #  nginx::config::nx_daemon_user = 'nginx'
   nginx::resource::vhost { 'dl.openstack.tld':
-    www_root         => '/srv/dl',
+    www_root             => '/srv/dl',
     use_default_location => false,
-    require          => User['dl'],
-    vhost_cfg_append => {
+    require              => User['dl'],
+    vhost_cfg_append     => {
       autoindex => on,
     }
   }
   nginx::resource::location{'/':
-    ensure => present,
+    ensure   => present,
     www_root => '/srv/dl',
     vhost    => 'dl.openstack.tld',
   }
   nginx::resource::location{'~* "\.xml\.gz$"':
-    ensure => present,
-    www_root => '/srv/dl',
-    vhost    => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/xml gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/xml gz;}',
     }
   }
-
   nginx::resource::location{'~* "\.ini\.gz$"':
-    ensure => present,
-    www_root => '/srv/dl',
-    vhost    => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/plain gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/plain gz;}',
     }
   }
   nginx::resource::location{'~* "\.conf\.gz$"':
-    ensure => present,
-    www_root => '/srv/dl',
-    vhost    => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/plain gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/plain gz;}',
     }
   }
   nginx::resource::location{'~* "\.json\.gz$"':
-    ensure => present,
-    www_root => '/srv/dl',
-    vhost    => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/plain gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/plain gz;}',
     }
   }
   nginx::resource::location{'~* "\.yaml\.gz$"':
-    ensure => present,
-    www_root => '/srv/dl',
-    vhost    => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/plain gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/plain gz;}',
     }
   }
-  
   nginx::resource::location{'~* "\.html\.gz$"':
-    ensure => present,
-    www_root => '/srv/dl',
-    vhost    => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/html gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/html gz;}',
     }
   }
   nginx::resource::location{'~* "\.(log|txt)\.gz$"':
-    ensure => present,
-    www_root               => '/srv/dl',
-    vhost                  => 'dl.openstack.tld',
+    ensure              => present,
+    www_root            => '/srv/dl',
+    vhost               => 'dl.openstack.tld',
     location_cfg_append => {
-      add_header           => 'Content-Encoding gzip',
-      gzip                 => 'off',
-      types                => '{text/plain gz;}',
+      add_header => 'Content-Encoding gzip',
+      gzip       => 'off',
+      types      => '{text/plain gz;}',
     }
   }
 }
-

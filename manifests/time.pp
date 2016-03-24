@@ -13,12 +13,11 @@ class profiles::time ( $ntpservers, $timezone ){
   $site_ntp_alert   = "Fulling Site requirements for ${::kernel} NTP configuration on ${::fqdn}"
   $site_ntp_failure = "FAILURE: ${::fqdn} failed to meet the requirements to operate in this site."
 
-  case $kernel {
-
+  case $::kernel {
     'Linux':{
       notice( $site_ntp_alert )
       class {'ntp':
-        servers => [$ntp_servers],
+        servers => [$::ntp_servers],
       }
       $network_time = 'puppet_managed'
     }

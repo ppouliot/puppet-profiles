@@ -8,8 +8,8 @@ node /^win-build-host[0-9]*\.openstack\.tld$/{
         before => Class['windows_openssl'],
       }
       class{'windows_sensu':
-        rabbitmq_password        => 'sensu',
-        rabbitmq_host            => "10.21.7.4",
+        rabbitmq_password => 'sensu',
+        rabbitmq_host     => '10.21.7.4',
       }
       class {'windows_common::configuration::rdp':}
       class {'windows_openssl': }

@@ -1,22 +1,17 @@
 node 'zuul.openstack.tld'{
   class {'basenode':}
-
   # Temporary version lock on Sensu due to a compatibility issue between the puppet module and latest version.
   class {'sensu': version => '0.12.6-1',}
   class {'sensu_client_plugins': require => Class['sensu'],}
-
   group {'zuul':
     ensure => 'present',
   }
-
   user {'zuul':
-    ensure => 'present',
-    gid    => 'zuul',
+    ensure     => 'present',
+    gid        => 'zuul',
     managehome => true,
   }
-
   ensure_resource('class', 'python', {'pip' => true,'dev' => true })
-
   $zuul_version = hiera('zuul_version','latest')
   package {'zuul':
     ensure   => $zuul_version,
@@ -25,10 +20,10 @@ node 'zuul.openstack.tld'{
   }
 
   file {'/var/lib/zuul':
-    ensure  => directory,
-    owner   => zuul,
-    group   => zuul,
-    mode    => 755,
+    ensure => directory,
+    owner  => 'zuul',
+    group  => 'zuul',
+    mode   => '0755',
   }
 
   vcsrepo { '/opt/zuul':
@@ -38,11 +33,11 @@ node 'zuul.openstack.tld'{
     source   => 'https://git.openstack.org/openstack-infra/zuul',
   }
 
- file { '/var/lib/zuul/www':
+  file { '/var/lib/zuul/www':
     ensure  => directory,
-    owner   => zuul,
-    group   => zuul,
-    mode    => 755,
+    owner   => 'zuul',
+    group   => 'zuul',
+    mode    => '0755',
     require => File['/var/lib/zuul'],
   }
 
@@ -104,14 +99,14 @@ node 'zuul.openstack.tld'{
     use_default_location => false,
     access_log           => '/var/log/nginx/zuul_access.log',
     error_log            => '/var/log/nginx/zuul_error.log',
-    #location_cfg_append  => { 'rewrite' => '^/status.json$ http://127.0.0.1:80/status.json' },
-    vhost_cfg_append => {
+    #location_cfg_append => { 'rewrite' => '^/status.json$ http://127.0.0.1:80/status.json' },
+    vhost_cfg_append     => {
       autoindex => on,
     }
   }
 
   nginx::resource::location{'/':
-    ensure => present,
+    ensure   => present,
     www_root => '/var/lib/zuul/www',
     vhost    => 'zuul.openstack.tld',
     #fastcgi        => "127.0.0.1:9000",
@@ -122,32 +117,33 @@ node 'zuul.openstack.tld'{
   }
 
   file {'/var/log/zuul':
-    ensure  => directory,
-    owner   => zuul,
-    group   => zuul,
-    mode    => 0700,
+    ensure => directory,
+    owner  => 'zuul',
+    group  => 'zuul',
+    mode   => '0700',
   }
 
   service {'zuul':
-#    ensure  => stopped,
+#    ensure => stopped,
     require => [File['/var/lib/zuul'],File['/var/log/zuul'],Package['zuul']],
   }
 
   file {'/root/.ssh/known_hosts':
-    ensure  => file,
-    owner   => root,
-    group   => root,
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
   }
 
   file_line {'Github_Host_Keys-1':
-    path => '/root/.ssh/known_hosts',
+    path    => '/root/.ssh/known_hosts',
     require => File['/root/.ssh/known_hosts'],
-    line => '|1|aLQHzwtyviPoHSsRR7lpEZxIAZE=|YFgjt9m7qOSLOAKYxMnv/jwCXIg= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+    line    => '|1|aLQHzwtyviPoHSsRR7lpEZxIAZE=|YFgjt9m7qOSLOAKYxMnv/jwCXIg= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
   }
   file_line {'Github_Host_Keys-2':
-    path => '/root/.ssh/known_hosts',
+    path    => '/root/.ssh/known_hosts',
     require => File['/root/.ssh/known_hosts'],
-    line => '|1|89x4leB7e3hy79cw+yyHVH6XE/A=|+niJStZ4OaOJ55knnXhclnSGGLc= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+    line    => '|1|89x4leB7e3hy79cw+yyHVH6XE/A=|+niJStZ4OaOJ55knnXhclnSGGLc= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+  
   }
 
   vcsrepo {'service-config':
@@ -167,9 +163,9 @@ node 'zuul.openstack.tld'{
     ensure  => file,
     owner   => root,
     group   => root,
-    mode    => 0755,
-    source  => "/usr/local/src/service-config/zuul-service/zuul",
-    require => Vcsrepo["service-config"],
+    mode    => '0755',
+    source  => '/usr/local/src/service-config/zuul-service/zuul',
+    require => Vcsrepo['service-config'],
     before  => Service['zuul'],
   }
 
@@ -177,40 +173,40 @@ node 'zuul.openstack.tld'{
     ensure  => link,
     force   => true,
     target  => "/usr/local/src/service-config/${hostname}",
-    require => [Vcsrepo["service-config"],Package['zuul']],
+    require => [Vcsrepo['service-config'],Package['zuul']],
     notify  => Service['zuul'],
   }
 
   file {'/home/zuul/.ssh/':
-    ensure  => directory,
-    owner   => zuul,
-    group   => zuul,
-    mode    => 0700,
+    ensure => directory,
+    owner  => 'zuul',
+    group  => 'zuul',
+    mode   => '0700',
   }
 
   file { '/home/zuul/.ssh/id_rsa':
     ensure  => file,
-    owner   => zuul,
-    group   => zuul,
-    mode    => 0700,
-    source  => "/usr/local/src/service-config/zuul-keys/id_rsa",
-    require => [Vcsrepo["service-config"],User['zuul'],File['/home/zuul/.ssh/']]
+    owner   => 'zuul',
+    group   => 'zuul',
+    mode    => '0700',
+    source  => '/usr/local/src/service-config/zuul-keys/id_rsa',
+    require => [Vcsrepo['service-config'],User['zuul'],File['/home/zuul/.ssh/']]
   }
 
   file { '/home/zuul/.ssh/hyper-v-ci.pub':
     ensure  => file,
-    owner   => zuul,
-    group   => zuul,
-    mode    => 0700,
-    source  => "/usr/local/src/service-config/zuul-keys/hyper-v-ci.pub",
-    require => [Vcsrepo["service-config"],User['zuul'],File['/home/zuul/.ssh/']]
+    owner   => 'zuul',
+    group   => 'zuul',
+    mode    => '0700',
+    source  => '/usr/local/src/service-config/zuul-keys/hyper-v-ci.pub',
+    require => [Vcsrepo['service-config'],User['zuul'],File['/home/zuul/.ssh/']]
   }
 
   file { '/etc/cron.daily/rotate_zuul':
     ensure  => file,
     owner   => root,
     group   => root,
-    mode    => 0755,
+    mode    => '0755',
     content => '#!/bin/bash
 LOGDIR="/var/log/zuul"
 if [ -d "$LOGDIR" ]

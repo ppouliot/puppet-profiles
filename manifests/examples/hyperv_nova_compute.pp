@@ -1,10 +1,9 @@
 node /^(hv-compute[0-9][0-9]).*/{
-
   notify {"Welcome ${fqdn}":}
   case $hostname {
     'hv-compute01':{
-        class {'petools':}
-     }
+      class {'petools':}
+    }
     default: { notify{"You're not hv-compute01":}}
 
   }

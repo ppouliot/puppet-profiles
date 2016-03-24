@@ -11,7 +11,7 @@
 class profiles::docker_registry(){
 
   vcsrepo{'/usr/local/src/docker-registry':
-    ensure   => present, 
+    ensure   => present,
     provider => git,
     source   => 'https://github.com/docker/docker-registry.git'
   }
@@ -22,10 +22,10 @@ class profiles::docker_registry(){
   }
 
   file {'/usr/local/src/docker-registry/config.yml':
-    ensure => file,
-    source => '/usr/local/src/docker-registry/config_sample.yml', 
+    ensure  => file,
+    source  => '/usr/local/src/docker-registry/config_sample.yml',
     require => Vcsrepo['/usr/local/src/docker-registry'],
-  } 
+  }
 
   exec {'pip-install-requirements':
     command     => '/usr/bin/pip install -r /usr/local/src/docker-registry/requirements.txt',
@@ -39,4 +39,4 @@ class profiles::docker_registry(){
     provider => 'pip',
     ensure   => installed,
   }
-} 
+}
