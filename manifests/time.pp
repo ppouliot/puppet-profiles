@@ -31,7 +31,7 @@ class profiles::time ( $ntpservers, $timezone ){
       $network_time = 'puppet_managed'
     }
     default:{
-      fail("${$kernel} doesn't meet the requirements to operate in the site.")
+      fail( $site_ntp_failure )
     }
   }
 

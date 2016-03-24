@@ -29,7 +29,7 @@ class profiles::remote_access () {
     }
 
     default:{
-      fail("${::fqdn} doesn't meet the requirements to operate in the site.")
+      fail( $remote_access_failure )
     }
   }
 }
