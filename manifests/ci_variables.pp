@@ -3,7 +3,7 @@
 # A class to define the ci_variables services required
 # in a managed site
 #
-define profiles::c
+profiles::ci_variables
   $jenkins_master,
   $jenkins_label,
   $ad_domain_controller,
