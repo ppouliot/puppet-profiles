@@ -1,0 +1,11 @@
+#!/bin/bash
+#IFS for jobs with spaces.
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+for i in $(java -jar /run/jenkins/war/WEB-INF/jenkins-cli.jar -s http:/<%= @ipaddress %>:9000/ list-jobs); 
+do 
+  java -jar /run/jenkins/war/WEB-INF/jenkins-cli.jar -s http://<%= @ipaddress %>:9000/ get-job ${i} > ${i}.xml;
+done
+IFS=$SAVEIFS
+mkdir deploy
+tar cvfj "jenkins_jobs-<%= @fqdn %>.tar.bz2" ./*.xml
