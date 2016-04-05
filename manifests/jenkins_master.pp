@@ -108,4 +108,12 @@ class profiles::jenkins_master(){
       'vncviewer'                        => { 'version' => 'latest' },
     },
   }
+
+  file{'/root/bin/jenkins_master-export_jobs.sh':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0777',
+    content => tempate('profiles/jenkins_master-export_jobs.sh.erb'),
+  }
 }
