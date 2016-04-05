@@ -6,7 +6,7 @@
 class profiles::mgmt_tools (){
 
 
-  validate_re($::kernel, '(^Linux|Windows)$', 'This Module only works on Linux and Windows Kernels.')
+  validate_re($::kernel, '(^Linux|windows)$', 'This Module only works on Linux and Windows Kernels.')
 
   $site_mt_alert   = "Fullfulling management tool installation and configuration requirements for ${::kernel} on ${::fqdn}"
   $site_mt_failure = "FAILURE: ${::fqdn} Does not meet the requirments for installation of managment tools"
