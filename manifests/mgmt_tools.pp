@@ -30,7 +30,7 @@ class profiles::mgmt_tools (){
         ensure => latest,
       }
     }
-    'Windows':{
+    'windows':{
       notice( $site_mt_alert )
       Package{ provider => 'chocolatey',}
     }
