@@ -21,8 +21,9 @@ class profiles::remote_access () {
     }
     'windows':{
       notice( $remote_access_alert )
-      ## TODO Add WinRM Here
-      fail('WINDOWS NEEDS REMOTE ACCESS')
+      class{'windows_terminal_services':
+        remote_access => enable,
+      }
       $remote_access_enabled = 'puppet_managed'
     }
     default:{
