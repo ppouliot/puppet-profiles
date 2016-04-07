@@ -28,8 +28,8 @@ class profiles::beaker(){
     'beaker-windows',
     'beaker_spec_helper',
     'simp-beaker-helpers']:
-    ensure          => latest,
-    provider        => gem,
+    ensure   => latest,
+    provider => gem,
   }
   
   vcsrepo{'/usr/local/src/beaker':
