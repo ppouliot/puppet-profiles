@@ -7,11 +7,11 @@ class profiles::gerrit_gate
   class{'nginx': } ->
 
   httpauth { 'admin':
-    file     => '/etc/nginx/gerrit.htpasswd',
-    password => 'gerrit',
-    realm => 'realm',
+    file      => '/etc/nginx/gerrit.htpasswd',
+    password  => 'gerrit',
+    realm     => 'realm',
     mechanism => basic,
-    ensure => present,
+    ensure    => present,
   } ->
 
   nginx::resource::vhost{ $ipaddress:
@@ -35,7 +35,7 @@ class profiles::gerrit_gate
   } ->
 
   class{'staging':
-    path  => '/opt/staging',
+    path => '/opt/staging',
   }
 
   staging::file{'gerrit-2.12.2.war':
@@ -55,6 +55,7 @@ class profiles::gerrit_gate
   }
 
   gerrit::repository{[
+    'puppet-dell_openmanage',
     'puppet-etc_puppet',
     'puppet-etc_puppetlabs',
     'puppet-Puppetfile_Env',
@@ -62,17 +63,19 @@ class profiles::gerrit_gate
     'puppet-quartermaster',
     'puppet-maas',
     'puppet-juju',
-    'puppet-pf',
-    'puppet-windows_time',
-    'puppet-dell_openmanage',
     'puppet-ipam',
     'puppet-packstack',
-    'puppet-windows_openssl',
+    'puppet-pf',
     'puppet-manifests',
     'puppet-cloudbase_prep',
     'puppet-iphawk',
     'puppet-openstack_hyper_v',
     'puppet-windows_common',
+    'puppet-windows_containers',
+    'puppet-windows_time',
+    'puppet-windows_terminal_services',
+    'puppet-windows_openssl',
+    'puppet-windows_platform_facts',
     'puppet-windows_python',
     'puppet-sensu_server',
     'puppet-sensu_client_plugins',
