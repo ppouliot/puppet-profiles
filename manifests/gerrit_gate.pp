@@ -15,8 +15,8 @@ class profiles::gerrit_gate
   } ->
 
   nginx::resource::vhost{ $ipaddress:
-    proxy            => "http://${::ipaddress}:8080",
-    proxy_set_header => [ 
+    proxy                => "http://${::ipaddress}:8080",
+    proxy_set_header     => [
       'X-Forward-For $remote_addr',
       'Host $host'
     ],
