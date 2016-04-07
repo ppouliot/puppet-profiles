@@ -10,7 +10,7 @@ class profiles::node_networking (){
   $site_node_networking_alert   = "Fullfilling Site requirements for ${::kernel} Site Requirements for Networking configuration on ${::fqdn}"
   $site_node_networking_failure = "FAILURE: ${::fqdn} failed to meet the node_networking requirements to operate in this site."
 
-  case $kernel {
+  case $::kernel {
 
     'Linux':{
       notice( $site_node_networking_alert )
