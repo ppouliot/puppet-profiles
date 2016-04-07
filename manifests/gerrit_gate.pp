@@ -131,7 +131,7 @@ class profiles::gerrit_gate
     command     => '/usr/bin/java -jar /opt/gerrit/bin/gerrit.war \'reindex\' && /bin/chown -R gerrit.gerrit /opt/gerrit',
     cwd         => '/opt/gerrit',
     refreshonly => true,
-    notify      => Exec['gerrit_reset_directory_ownership']:
+    notify      => Exec['gerrit_reset_directory_ownership'],
     require     => Exec['gerrit_stop'],
     before      => Exec['gerrit_start'],
   }
