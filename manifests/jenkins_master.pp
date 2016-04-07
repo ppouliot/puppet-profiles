@@ -2,18 +2,18 @@
 class profiles::jenkins_master(){
   # Jenkins Server Configuration
   class {'jenkins':
-    version                              => 'latest',
-    lts                                  => false,
-    executors                            => 8,
-    install_java                         => true,
-    configure_firewall                   => true,
-    config_hash                          => {
+    version            => 'latest',
+    lts                => false,
+    executors          => 8,
+    install_java       => true,
+    configure_firewall => true,
+    config_hash        => {
       'HTTP_PORT' => {
         'value' => '9000'
       }
     },
     # Jenkins Plugins
-    plugin_hash                          => {
+    plugin_hash        => {
       'antisamy-markup-formatter'        => {
         'version' => 'latest'
       },
