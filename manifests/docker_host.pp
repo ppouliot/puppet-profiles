@@ -45,7 +45,7 @@
       }
     }
     default:{
-      warning('The Profiles::Docker_Host module doesn't currently support this platform!')
+      warning('The Profiles::Docker_Host module does not currently support this platform!')
     }
   }
 }
