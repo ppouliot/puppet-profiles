@@ -33,9 +33,9 @@ class profiles::beaker(){
   }
   
   vcsrepo{'/usr/local/src/beaker':
+    ensure   => latest,
     source   => 'https://github.com/puppetlabs/beaker',
     provider => git,
-    ensure   => latest,
   }
 
 }
