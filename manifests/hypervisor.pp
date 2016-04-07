@@ -21,11 +21,7 @@ class profiles::hypervisor (){
     }
 
     default:{
-<<<<<<< HEAD
       fail( $site_hypervisor_failure )
-=======
-      fail("${::kernel} doesn't meet the requirements to operate in the site.")
->>>>>>> aaf575e541a6e2a8d17d5e400afe8b17098abc74
     }
 
   }

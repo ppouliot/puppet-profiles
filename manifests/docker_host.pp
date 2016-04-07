@@ -4,25 +4,25 @@
 
   warning("${fqdn} is a puppet managed docker host configured by the profiles::docker_host class")
   class {'docker':
-    tcp_bind        => 'tcp://0.0.0.0:4243',
-    socket_bind     => 'unix:///var/run/docker.sock',
+    tcp_bind    => 'tcp://0.0.0.0:4243',
+    socket_bind => 'unix:///var/run/docker.sock',
   } ->
 
   file{'/root/dockerhost_remove_images.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet:///profiles/files/dockerhost_remove_images.sh',
+    source  => 'puppet:///profiles/files/dockerhost_remove_images.sh',
   }
   file{'/root/dockerhost_remove_stale_containers.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet://profiles/files/dockerhost_remove_stale_containers.sh',
+    source  => 'puppet://profiles/files/dockerhost_remove_stale_containers.sh',
   }
 
   file {'/root/docker_host_join_shipyard.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet:///profiles/files/dockerhost_join_shipyard.sh',
+    source  => 'puppet:///profiles/files/dockerhost_join_shipyard.sh',
   }
 
   case $operatingsystem {
