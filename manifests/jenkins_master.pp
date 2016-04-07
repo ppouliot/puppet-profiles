@@ -8,7 +8,7 @@ class profiles::jenkins_master(){
     install_java                         => true,
     configure_firewall                   => true,
     config_hash                          => {
-      'HTTP_PORT'                        => {
+      'HTTP_PORT' => {
         'value' => '9000'
        }
     },
@@ -36,7 +36,7 @@ class profiles::jenkins_master(){
         'version' => 'latest'
       },
       'configure-job-column-plugin'      => {
-        'version' => 'latest'i
+        'version' => 'latest'
       },
       'console-column-plugin'            => {
         'version' => 'latest'
@@ -47,12 +47,24 @@ class profiles::jenkins_master(){
       'docker-workflow'                  => {
         'version' => 'latest'
       },
-      'docker-traceability'              => { 'version' => 'latest' },
-      'docker-plugin'                    => { 'version' => 'latest' },
-      'docker-custom-build-environment'  => { 'version' => 'latest' },
-      'docker-commons'                   => { 'version' => 'latest' },
-      'docker-build-step'                => { 'version' => 'latest' },
-      'docker-build-publish'             => { 'version' => 'latest' },
+      'docker-traceability'              => {
+        'version' => 'latest'
+      },
+      'docker-plugin'                    => {
+        'version' => 'latest'
+      },
+      'docker-custom-build-environment'  => {
+        'version' => 'latest'
+      },
+      'docker-commons'                   => {
+        'version' => 'latest'
+      },
+      'docker-build-step'                => {
+        'version' => 'latest'
+      },
+      'docker-build-publish'             => {
+        'version' => 'latest'
+      },
       'gerrit'                           => { 'version' => 'latest' },
       'gerrit-trigger'                   => { 'version' => 'latest' },
       'github'                           => { 'version' => 'latest' },
