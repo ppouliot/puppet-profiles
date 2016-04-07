@@ -36,7 +36,7 @@ class profiles::docker_registry(){
     timeout     => 0,
   }
   package{'docker-registry':
-    provider => 'pip',
     ensure   => installed,
+    provider => 'pip',
   }
 }
