@@ -1,8 +1,8 @@
 # == profiles::docker_host
 # The basics for systems running containers.
- class profiles::docker_host(){
+class profiles::docker_host(){
 
-  warning("${fqdn} is a puppet managed docker host configured by the profiles::docker_host class")
+  warning("${::fqdn} is a puppet managed docker host configured by the profiles::docker_host class")
   class {'docker':
     tcp_bind    => 'tcp://0.0.0.0:4243',
     socket_bind => 'unix:///var/run/docker.sock',
