@@ -9,20 +9,20 @@
   } ->
 
   file{'/root/dockerhost_remove_images.sh':
-    ensure  => file,
-    mode    => '0777',
-    source  => 'puppet:///profiles/files/dockerhost_remove_images.sh',
+    ensure => file,
+    mode   => '0777',
+    source => 'puppet:///profiles/files/dockerhost_remove_images.sh',
   }
   file{'/root/dockerhost_remove_stale_containers.sh':
-    ensure  => file,
-    mode    => '0777',
-    source  => 'puppet://profiles/files/dockerhost_remove_stale_containers.sh',
+    ensure => file,
+    mode   => '0777',
+    source => 'puppet://profiles/files/dockerhost_remove_stale_containers.sh',
   }
 
   file {'/root/docker_host_join_shipyard.sh':
-    ensure  => file,
-    mode    => '0777',
-    source  => 'puppet:///profiles/files/dockerhost_join_shipyard.sh',
+    ensure => file,
+    mode   => '0777',
+    source => 'puppet:///profiles/files/dockerhost_join_shipyard.sh',
   }
 
   case $operatingsystem {
