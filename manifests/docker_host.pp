@@ -25,9 +25,9 @@ class profiles::docker_host(){
     source => 'puppet:///profiles/dockerhost_join_shipyard.sh',
   }
 
-  case $operatingsystem {
+  case $::operatingsystem {
     'Ubuntu':{
-      notice("Docker host ${fqdn} is peparing Ubuntu Based containers")
+      notice("Docker host ${::fqdn} is peparing Ubuntu Based containers")
       docker::image {'ubuntu':
         image_tag =>  ['trusty']
       }
@@ -36,7 +36,7 @@ class profiles::docker_host(){
       }
     }
     'Centos':{
-      notice("docker host ${fqdn} is peparing Centos Based containers")
+      notice("docker host ${::fqdn} is peparing Centos Based containers")
       docker::image{'centos':
         image_tag =>  ['centos7']
       }
