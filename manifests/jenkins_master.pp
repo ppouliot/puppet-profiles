@@ -8,7 +8,9 @@ class profiles::jenkins_master(){
     install_java                         => true,
     configure_firewall                   => true,
     config_hash                          => {
-      'HTTP_PORT'                        => {'value' => '9000' }
+      'HTTP_PORT'                        => {
+        'value' => '9000'
+       }
     },
     # Jenkins Plugins
     plugin_hash                          => {
@@ -18,15 +20,33 @@ class profiles::jenkins_master(){
       'backup'                           => {
         'version' => 'latest'
       },
-      'build-view-column'                => { 'version' => 'latest' },
-      'built-on-column'                  => { 'version' => 'latest' },
-      'credentials'                      => { 'version' => 'latest' },
-      'cvs'                              => { 'version' => 'latest' },
-      'compact-columns'                  => { 'version' => 'latest' },
-      'configure-job-column-plugin'      => { 'version' => 'latest' },
-      'console-column-plugin'            => { 'version' => 'latest' },
-      'custom-job-icon'                  => { 'version' => 'latest' },
-      'docker-workflow'                  => { 'version' => 'latest' },
+      'build-view-column'                => {
+        'version' => 'latest'
+      },
+      'built-on-column'                  => {
+        'version' => 'latest'
+      },
+      'credentials'                      => {
+        'version' => 'latest'
+      },
+      'cvs'                              => {
+        'version' => 'latest'
+      },
+      'compact-columns'                  => {
+        'version' => 'latest'
+      },
+      'configure-job-column-plugin'      => {
+        'version' => 'latest'i
+      },
+      'console-column-plugin'            => {
+        'version' => 'latest'
+      },
+      'custom-job-icon'                  => {
+        'version' => 'latest'
+      },
+      'docker-workflow'                  => {
+        'version' => 'latest'
+      },
       'docker-traceability'              => { 'version' => 'latest' },
       'docker-plugin'                    => { 'version' => 'latest' },
       'docker-custom-build-environment'  => { 'version' => 'latest' },
