@@ -12,8 +12,12 @@ class profiles::jenkins_master(){
     },
     # Jenkins Plugins
     plugin_hash                          => {
-      'antisamy-markup-formatter'        => { 'version' => 'latest' },
-      'backup'                           => { 'version' => 'latest' },
+      'antisamy-markup-formatter'        => {
+        'version' => 'latest'
+      },
+      'backup'                           => {
+        'version' => 'latest'
+      },
       'build-view-column'                => { 'version' => 'latest' },
       'built-on-column'                  => { 'version' => 'latest' },
       'credentials'                      => { 'version' => 'latest' },
