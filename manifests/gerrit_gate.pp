@@ -52,7 +52,6 @@ class profiles::gerrit_gate {
     database_username => 'puppetci',
     database_password => 'hard24get',
     canonicalweburl   => "http://${::ipaddress}:8080/",
-    require           => File['/opt/gerrit'],
   }
 
   gerrit::repository{[
