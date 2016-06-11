@@ -116,13 +116,13 @@ class profiles::gerrit_gate {
   }
 
   exec{'gerrit_start':
-    command     => 'opt/gerrit/bin/gerrit.sh start',
+    command     => '/opt/gerrit/bin/gerrit.sh start',
     cwd         => '/opt/gerrit',
     refreshonly => true,
   }
 
   exec{'gerrit_restart':
-    command     => 'opt/gerrit/bin/gerrit.sh restart',
+    command     => '/opt/gerrit/bin/gerrit.sh restart',
     cwd         => '/opt/gerrit',
     refreshonly => true,
   }
