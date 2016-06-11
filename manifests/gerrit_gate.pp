@@ -12,7 +12,7 @@ class profiles::gerrit_gate {
     realm     => 'realm',
     mechanism => basic,
     ensure    => present,
-  } ->
+  }
 
   nginx::resource::vhost{ $ipaddress:
     proxy                => "http://${::ipaddress}:8080",
@@ -32,7 +32,7 @@ class profiles::gerrit_gate {
     group  => 'gerrit',
     owner  => 'gerrit',
     mode   => '0755',
-  } ->
+  }
 
   class{'staging':
     path => '/opt/staging',
@@ -52,7 +52,8 @@ class profiles::gerrit_gate {
     database_username => 'puppetci',
     database_password => 'hard24get',
     canonicalweburl   => "http://${::ipaddress}:8080/",
-  }
+    require           => File['/opt/gerrit'],
+  } ->
 
   gerrit::repository{[
     'puppet-dell_openmanage',
