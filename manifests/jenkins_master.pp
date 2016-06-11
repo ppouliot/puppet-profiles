@@ -299,6 +299,7 @@ class profiles::jenkins_master(){
     },
   }
 
+  $jm_timestamp = generate('/usr/bin/date +%F_%H.%M.%S')
   file{'/root/bin/jenkins_master-export_jobs.sh':
     ensure  => file,
     owner   => 'root',
@@ -306,4 +307,7 @@ class profiles::jenkins_master(){
     mode    => '0777',
     content => tempate('profiles/jenkins_master-export_jobs.sh.erb'),
   }
+  #exec{'run-jenkins_master-export_jobs':
+  #  command => '/root/bin/jenkins_master-export_jobs.sh'',
+  #}
 }

@@ -1,7 +1,7 @@
-# class profiles::puppetlabs_beaker.pp
+# class profiles::gerrit_gate
 # Gerrit installation using Nginx & httppasswd for 
 # the default authentication method
-class profiles::gerrit_gate
+class profiles::gerrit_gate {
 
   # Nginx Authentication proxy
   class{'nginx': } ->
