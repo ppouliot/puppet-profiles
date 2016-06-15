@@ -12,7 +12,9 @@ class profiles::kvm_host(){
     'blackbox',
     'tightvncserver',
     'xterm',
-    'virt-manager']:
+    'virt-manager',
+    'openssh-askpass'
+  ]:
     ensure => 'latest'
   }
 }
