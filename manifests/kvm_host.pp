@@ -13,7 +13,7 @@ class profiles::kvm_host(){
     'tightvncserver',
     'xterm',
     'virt-manager',
-    'openssh-askpass'
+    'ssh-askpass'
   ]:
     ensure => 'latest'
   }
