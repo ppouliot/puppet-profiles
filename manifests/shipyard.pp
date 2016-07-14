@@ -60,6 +60,11 @@ class profiles::shipyard {
     mode    => '0777',
     source => 'puppet:///modules/profiles/update_shipyard.sh',
   }
+  file{'/root/remove_shipyard.sh':
+    ensure  => file,
+    mode    => '0777',
+    source => 'puppet:///modules/profiles/remove_shipyard.sh',
+  }
 
 #  docker::run { 'jenkins-master':
 #    image           => 'library/jenkins:latest',
