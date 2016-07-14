@@ -43,22 +43,22 @@ class profiles::shipyard {
   file{'/root/docker_remove_images.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet://profiles/dockerhost_remove_images.sh',
+    source => 'puppet:///modules/profiles/dockerhost_remove_images.sh',
   }
   file{'/root/docker_remove_stale_containers.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet://profiles/dockerhost_remove_stale_containers.sh',
+    source => 'puppet:///modules/profiles/dockerhost_remove_stale_containers.sh',
   }
   file{'/root/deploy_shipyard.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet://profiles/deploy_shipyard.sh',
+    source => 'puppet:///modules/profiles/deploy_shipyard.sh',
   }
   file{'/root/update_shipyard.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet://profiles/update_shipyard.sh',
+    source => 'puppet:///modules/profiles/update_shipyard.sh',
   }
 
 #  docker::run { 'jenkins-master':
