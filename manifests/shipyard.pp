@@ -43,12 +43,12 @@ class profiles::shipyard {
   file{'/root/docker_remove_images.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet:///profiles/docker_remove_images.sh',
+    source => 'puppet:///profiles/dockerhost_remove_images.sh',
   }
   file{'/root/docker_remove_stale_containers.sh':
     ensure  => file,
     mode    => '0777',
-    source => 'puppet:///profiles/docker_remove_stale_containers.sh',
+    source => 'puppet:///profiles/dockerhost_remove_stale_containers.sh',
   }
   file{'/root/deploy_shipyard.sh':
     ensure  => file,
