@@ -1,4 +1,4 @@
-class {'profiles::shipyard':
+class 'profiles::shipyard' {
   notice("This Shipyard Host runs Production CI Containers and is managed by puppet")
   user { 'jenkins':
     ensure           => 'present',
