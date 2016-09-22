@@ -36,9 +36,9 @@ class profiles::shipyard {
 #  }
 
 # Official Docker Registry Image
-#  docker::image{'library/registry':
-#    image_tag =>  ['latest']
-#  }
+  docker::image{'library/registry':
+    image_tag =>  ['latest']
+  }
 
   file{'/root/docker_remove_images.sh':
     ensure  => file,
@@ -75,9 +75,9 @@ class profiles::shipyard {
 #    require         => User['jenkins'],
 #    restart_service => true,
 #  }
-#  docker::run { 'docker-registry':
-#    image           => 'library/registry:latest',
-#    hostname        => 'registry',
-#    ports           => ['8140:8140'],
-#  }
+  docker::run { 'docker-registry':
+    image           => 'library/registry:latest',
+    hostname        => 'msopenstack_internal_registry',
+    ports           => ['8140:8140'],
+  }
 }
