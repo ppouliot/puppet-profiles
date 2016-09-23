@@ -78,6 +78,6 @@ class profiles::shipyard {
   docker::run { 'docker-registry':
     image           => 'library/registry:latest',
     hostname        => 'msopenstack-internal',
-    ports           => ['5000:5000','8140:8140'],
+    ports           => ['8140:8140'],
   }
 }
