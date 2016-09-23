@@ -75,9 +75,9 @@ class profiles::shipyard {
 #    require         => User['jenkins'],
 #    restart_service => true,
 #  }
-  docker::run { 'docker-registry':
-    image           => 'library/registry:latest',
-    hostname        => 'msopenstack-internal',
-    ports           => ['8140:8140'],
+  docker::run { 'msopenstack-internal-registry':
+    image           => 'library/registry:2',
+    hostname        => 'msopenstack-internal-registry',
+    ports           => ['5000:5000','8140:8140'],
   }
 }
