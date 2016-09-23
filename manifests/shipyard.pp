@@ -28,7 +28,7 @@ class profiles::shipyard {
 #  }
 
   docker::image {'ubuntu':
-    image_tag =>  ['trusty','xenial']
+    image_tag =>  ['trusty']
   }
   docker::image{'msopenstack/sentinel-ubuntu_trusty':
     image_tag =>  ['latest']
@@ -45,7 +45,7 @@ class profiles::shipyard {
 
 # Official Docker Registry Image
   docker::image{'library/registry':
-    image_tag =>  ['latest']
+    image_tag =>  ['2']
   }
 
   file{'/root/docker_remove_images.sh':
