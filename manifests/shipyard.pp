@@ -28,8 +28,16 @@ class profiles::shipyard {
 #  }
 
   docker::image {'ubuntu':
-    image_tag =>  ['trusty']
+    image_tag =>  ['trusty','xenial']
   }
+  docker::image{'msopenstack/sentinel-ubuntu_trusty':
+    image_tag =>  ['latest']
+  }
+  docker::image{'msopenstack/sentinel-ubuntu_xenial':
+    image_tag =>  ['latest']
+  }
+
+
 # Official Jenkins LTS Docker Image
 #  docker::image{'library/jenkins':
 #    image_tag =>  ['latest']
