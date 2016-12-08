@@ -28,13 +28,16 @@ class profiles::shipyard {
 #  }
 
   docker::image {'ubuntu':
-    image_tag =>  ['trusty']
+    image_tag =>  ['trusty'],
     ensure    => latest,
   }
   docker::image{'msopenstack/sentinel-ubuntu_trusty':
     ensure    => latest,
   }
   docker::image{'msopenstack/sentinel-ubuntu_xenial':
+    ensure    => latest,
+  }
+  docker::image{'msopenstack/ci_metrics_aggregator':
     ensure    => latest,
   }
 
@@ -46,7 +49,7 @@ class profiles::shipyard {
 
 # Official Docker Registry Image
   docker::image{'library/registry':
-    image_tag =>  ['2']
+    image_tag =>  '2',
   }
 
   file{'/root/docker_remove_images.sh':
@@ -88,5 +91,12 @@ class profiles::shipyard {
     image           => 'library/registry:2',
     hostname        => 'msopenstack-internal-registry',
     ports           => ['5000:5000','8140:8140'],
+    restart_service => true,
+  }
+  docker::run { 'cim':
+    image           => 'msopenstack/ci_metrics_aggregator',
+    hostname        => 'cim',
+    ports           => ['80:80','3006:3006','8000,8000','8001,8001'],
+    restart_service => true,
   }
 }
