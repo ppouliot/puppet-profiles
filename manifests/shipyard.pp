@@ -29,12 +29,13 @@ class profiles::shipyard {
 
   docker::image {'ubuntu':
     image_tag =>  ['trusty']
+    ensure    => latest,
   }
   docker::image{'msopenstack/sentinel-ubuntu_trusty':
-    image_tag =>  ['latest']
+    ensure    => latest,
   }
   docker::image{'msopenstack/sentinel-ubuntu_xenial':
-    image_tag =>  ['latest']
+    ensure    => latest,
   }
 
 
