@@ -37,9 +37,9 @@ class profiles::shipyard {
   docker::image{'msopenstack/sentinel-ubuntu_xenial':
     ensure    => latest,
   }
-  docker::image{'msopenstack/ci_metrics_aggregator':
-    ensure    => latest,
-  }
+#  docker::image{'msopenstack/ci_metrics_aggregator':
+#    ensure    => latest,
+#  }
 
 
 # Official Jenkins LTS Docker Image
@@ -93,10 +93,12 @@ class profiles::shipyard {
     ports           => ['5000:5000','8140:8140'],
     restart_service => true,
   }
-  docker::run { 'cim':
-    image           => 'msopenstack/ci_metrics_aggregator',
-    hostname        => 'cim',
-    ports           => ['80:80','3006:3006','8000,8000','8001,8001'],
-    restart_service => true,
-  }
+#  docker::run { 'cim':
+#    image           => 'msopenstack/ci_metrics_aggregator',
+#    hostname        => 'cim',
+#    ports           => ['80:80'],
+#,'3006:3006','8000,8000','8001,8001'],
+#    restart_service => true,
+#    command         => '/bin/sh -c "while true; do /CIMetricsTool/bin/start-everything.sh; sleep 1; done"'
+#  }
 }
