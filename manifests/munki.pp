@@ -4,6 +4,11 @@ class profiles::munki ( $munki_http_root){
     'Darwin':{
       $munki_user      = 'root'
       $munki_group     = 'wheel'
+      file{'/Library/Server/Web/Data/Sites/Default/munki_repo':
+        ensure  => link,
+        target  => "${munki_http_root}/munki/munki_repo",
+        require => File["${munki_http_root}/munki/munki_repo"],
+      }
     }
 
     'Debian','RedHat':{
@@ -14,24 +19,24 @@ class profiles::munki ( $munki_http_root){
         ensure   => present,
         www_root => '/opt/',
         server    => $::fqdn,
-        require => File["${munki_http_root}/munki_repo"],
+        require => File["${munki_http_root}/munki/munki_repo"],
         location_cfg_append => {
           autoindex => on
         },
       } ->
       file{[
-        "${munki_http_root}/munki_repo/.README.html",
-        "${munki_http_root}/munki_repo/catalogs/.README.html",
-        "${munki_http_root}/munki_repo/manifests/.README.html",
-        "${munki_http_root}/munki_repo/pkgs/.README.html",
-        "${munki_http_root}/munki_repo/pkgsinfo/.README.html",
+        "${munki_http_root}/munki/munki_repo/.README.html",
+        "${munki_http_root}/munki/munki_repo/catalogs/.README.html",
+        "${munki_http_root}/munki/munki_repo/manifests/.README.html",
+        "${munki_http_root}/munki/munki_repo/pkgs/.README.html",
+        "${munki_http_root}/munki/munki_repo/pkgsinfo/.README.html",
       ]:
         ensure   => file,
       }
 
       samba::server::share{'munki_repo':
         comment       => 'Managed Software Installation for OsX and MacOS Platforms',
-        path          => "${munki_http_root}/munki_repo",
+        path          => "${munki_http_root}/munki/munki_repo",
         guest_ok      => true,
         guest_account => 'nobody',
         read_only     => false,
@@ -57,11 +62,11 @@ class profiles::munki ( $munki_http_root){
 
   file {[
     "${munki_http_root}/munki",
-    "${munki_http_root}/munki_repo",
-    "${munki_http_root}/munki_repo/catalogs",
-    "${munki_http_root}/munki_repo/manifests",
-    "${munki_http_root}/munki_repo/pkgs",
-    "${munki_http_root}/munki_repo/pkgsinfo",
+    "${munki_http_root}/munki/munki_repo",
+    "${munki_http_root}/munki/munki_repo/catalogs",
+    "${munki_http_root}/munki/munki_repo/manifests",
+    "${munki_http_root}/munki/munki_repo/pkgs",
+    "${munki_http_root}/munki/munki_repo/pkgsinfo",
   ]:
     ensure => directory,
     owner  => $munki_user,
