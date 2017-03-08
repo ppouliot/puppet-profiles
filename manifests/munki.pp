@@ -6,7 +6,7 @@ class profiles::munki {
       $munki_user      = 'root'
       $munki_group     = 'wheel'
 
-      file{'/Library/Server/Web/Data/Sites/Default/munki_repo'
+      file{'/Library/Server/Web/Data/Sites/Default/munki_repo':
         ensure  => link,
         target  => "${munki_http_root}/munki_repo",
         require => File["${munki_http_root}/munki_repo"],
