@@ -2,13 +2,11 @@ class profiles::munki ( $munki_http_root){
 
   case $osfamily {
     'Darwin':{
-     # $munki_http_root = '/Users/Shared'
       $munki_user      = 'root'
       $munki_group     = 'wheel'
     }
 
     'Debian','RedHat':{
-     # $munki_http_root = '/opt'
       $munki_src       = '/opt/munki'
       $munki_user      = 'www-data'
       $munki_group     = 'www-data'
@@ -58,6 +56,7 @@ class profiles::munki ( $munki_http_root){
   }
 
   file {[
+    "${munki_http_root}/munki",
     "${munki_http_root}/munki_repo",
     "${munki_http_root}/munki_repo/catalogs",
     "${munki_http_root}/munki_repo/manifests",
