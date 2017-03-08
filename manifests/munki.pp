@@ -1,20 +1,14 @@
-class profiles::munki {
+class profiles::munki ( $munki_http_root){
 
   case $osfamily {
     'Darwin':{
-      $munki_http_root = '/Users/Shared'
+     # $munki_http_root = '/Users/Shared'
       $munki_user      = 'root'
       $munki_group     = 'wheel'
-
-      file{'/Library/Server/Web/Data/Sites/Default/munki_repo':
-        ensure  => link,
-        target  => "${munki_http_root}/munki_repo",
-        require => File["${munki_http_root}/munki_repo"],
-      }
     }
 
     'Debian','RedHat':{
-      $munki_http_root = '/opt'
+     # $munki_http_root = '/opt'
       $munki_src       = '/opt/munki'
       $munki_user      = 'www-data'
       $munki_group     = 'www-data'
