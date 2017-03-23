@@ -1,20 +1,5 @@
 class profiles::shipyard {
   notice("This Shipyard Host runs Production CI Containers and is managed by puppet")
-  user { 'jenkins':
-    ensure           => 'present',
-    comment          => 'Jenkins,,,',
-    gid              => '120',
-    home             => '/var/jenkins_home',
-    password         => '*',
-    password_max_age => '99999',
-    password_min_age => '0',
-    shell            => '/bin/bash',
-    uid              => '113',
-  } ->
-  group { 'jenkins':
-    ensure => 'present',
-    gid    => '120',
-  }
 
   class {'docker':
     tcp_bind    => 'tcp://0.0.0.0:4243',
