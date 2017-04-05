@@ -62,6 +62,7 @@ class profiles::jenkins_master () {
     },
     plugin_hash                          => {
       'ace-editor'                       => { 'version' => 'latest' },
+      'analysis-core'                    => { 'version' => 'latest' },
       'antisamy-markup-formatter'        => { 'version' => 'latest' },
       'authentication-tokens'            => { 'version' => 'latest' },
       'ansicolor'                        => { 'version' => 'latest' },
