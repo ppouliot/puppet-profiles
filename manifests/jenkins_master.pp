@@ -82,10 +82,10 @@ class profiles::jenkins_master () {
       'build-environment'                   => { 'version' => 'latest' },
       'build-failure-analyzer'              => { 'version' => 'latest' },
       # Build flow is depreciated  for pipeline
-      'build-flow-extensions-plugin'        => { 'enabled' => 'false' },
-      'build-flow-plugin'                   => { 'enabled' => 'false' },
-      'build-flow-test-aggregator'          => { 'enabled' => 'false' },
-      'build-flow-toolbox-plugin'           => { 'enabled' => 'false' },
+      'build-flow-extensions-plugin'        => { 'enabled' => false },
+      'build-flow-plugin'                   => { 'enabled' => false },
+      'build-flow-test-aggregator'          => { 'enabled' => false },
+      'build-flow-toolbox-plugin'           => { 'enabled' => false },
       # 
       'build-history-metrics-plugin'        => { 'version' => 'latest' },
       'build-keeper-plugin'                 => { 'version' => 'latest' },
