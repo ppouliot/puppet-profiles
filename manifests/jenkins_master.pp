@@ -158,6 +158,7 @@ class profiles::jenkins_master () {
       'handlebars'                       => { 'version' => 'latest' },
       'hudson-wsclean-plugin'            => { 'version' => 'latest' },
       'icon-shim'                        => { 'version' => 'latest' },
+      'jackson2-api'                        => { 'version' => 'latest' },
       'jenkins-multijob-plugin'          => { 'version' => 'latest' },
       'javadoc'                          => { 'version' => 'latest' },
       'junit'                            => { 'version' => 'latest' },
