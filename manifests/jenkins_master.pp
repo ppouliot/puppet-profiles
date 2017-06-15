@@ -112,7 +112,8 @@ class profiles::jenkins_master () {
       'console-column-plugin'               => { 'version' => 'latest' },
       'custom-job-icon'                     => { 'version' => 'latest' },
       'conditional-buildstep'               => { 'version' => 'latest' },
-      'credentials'                         => { 'version' => 'latest' },
+#     Credentials is already defined in base module
+#     'credentials'                         => { 'version' => 'latest' },
       'credentials-binding'                 => { 'version' => 'latest' },
       'dashboard-view'                      => { 'version' => 'latest' },
       'deployment-notification'             => { 'version' => 'latest' },
