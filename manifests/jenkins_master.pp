@@ -50,7 +50,7 @@ class profiles::jenkins_master () {
     ensure          => present,
     provider        => gem,
   }
-
+  Jenkins::Plugin{ version => 'latest', }
   class {'jenkins':
     version                              => 'latest',
     lts                                  => false,
