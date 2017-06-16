@@ -10,10 +10,14 @@ class profiles::jenkins_master () {
     # Puppet Lint Syntax testing
     'puppet-lint',
     # NodeJs
-    'nodejs',
+    'nodejs','npm',
   ]:
     ensure          => 'latest'
   } ->
+  package{'azure-cli':
+    ensure => latest,
+    provider => npm,
+  }
 
 
   # Puppet-lint additional ruby gems
@@ -30,7 +34,8 @@ class profiles::jenkins_master () {
     'puppet-lint-leading_zero-check',
     'puppet-lint-empty_string-check',
     'puppet-lint-absolute_classname-check']:
-    ensure          => present,
+  #  ensure          => present,
+    ensure          => latest, 
     provider        => gem,
   }
 
