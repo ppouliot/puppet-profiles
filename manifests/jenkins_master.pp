@@ -285,10 +285,12 @@ class profiles::jenkins_master () {
   }
 
   git::config { 'user.name':
-    value => 'hypervci',
+#    value => 'hypervci',
+    value => 'primeministerp',
   }
 
   git::config { 'user.email':
-    value => 'hyper-v_ci@microsoft.com',
+#    value => 'hyper-v_ci@microsoft.com',
+    value => 'primeministerpete@gmail.com',
   }
 }
