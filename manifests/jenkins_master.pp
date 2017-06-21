@@ -194,7 +194,7 @@ class profiles::jenkins_master () {
       'nested-view'                      => { 'version' => 'latest' },
       'network-monitor'                  => { 'version' => 'latest' },
       'openstack-cloud'                  => { 'version' => 'latest' },
-      'openstack-heat'                   => { 'version' => 'latest' },
+#      'openstack-heat'                   => { 'version' => 'latest' },
       'pam-auth'                         => { 'version' => 'latest' },
       'plain-credentials'                => { 'version' => 'latest' },
       'parallel-test-executor'           => { 'version' => 'latest' },
