@@ -12,11 +12,11 @@ class profiles::jenkins_master () {
   ]:
     ensure          => 'latest'
   } ->
-  class{'nodejs':} ->
+  class{'nodejs':}
   package{'azure-cli':
     ensure   => 'latest',
     provider => 'npm',
-  } ->
+  }
 
 
   # Puppet-lint additional ruby gems
