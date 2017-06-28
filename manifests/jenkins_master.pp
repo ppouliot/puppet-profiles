@@ -19,6 +19,11 @@ class profiles::jenkins_master () {
   }
 
 
+
+  class{'python':
+    version => 'system',
+    pip     => 'present',
+  } ->
   package{[
     # JJB
     'jenkin-job-builder',
