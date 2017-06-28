@@ -19,6 +19,16 @@ class profiles::jenkins_master () {
   }
 
 
+  package{[
+    # JJB
+    'jenkin-job-builder',
+    # JJW
+    'jenkin-job-wrecker',
+  ]:
+    ensure   => 'latest',
+    provider => 'pip',
+  }
+
   # Puppet-lint additional ruby gems
   package{[
     'puppet-lint-resource_reference_syntax',
@@ -53,10 +63,12 @@ class profiles::jenkins_master () {
     'beaker-windows',
     'beaker_spec_helper',
     'simp-beaker-helpers']:
-    ensure          => present,
+    ensure          => latest,
     provider        => gem,
   }
+
   Jenkins::Plugin{ version => 'latest', }
+
   class {'jenkins':
     version                              => 'latest',
     lts                                  => false,
@@ -134,6 +146,7 @@ class profiles::jenkins_master () {
       'docker-build-publish'                => { 'version' => 'latest' },
       'durable-task'                        => { 'version' => 'latest' },
       'envinject'                           => { 'version' => 'latest' },
+      'envinject-api'                       => { 'version' => 'latest' },
       'ez-templates'                        => { 'version' => 'latest' },
       'gerrit'                              => { 'version' => 'latest' },
       'gerrit-trigger'                      => { 'version' => 'latest' },
