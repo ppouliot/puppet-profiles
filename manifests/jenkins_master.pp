@@ -21,7 +21,7 @@ class profiles::jenkins_master () {
 
 
   class{'python':
-    pip     => 'present',
+#    pip     => 'present',
   } ->
   package{[
     # JJB
