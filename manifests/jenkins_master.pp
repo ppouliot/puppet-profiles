@@ -25,9 +25,9 @@ class profiles::jenkins_master () {
   } ->
   package{[
     # JJB
-    'jenkin-job-builder',
+    'jenkins-job-builder',
     # JJW
-    'jenkin-job-wrecker',
+    'jenkins-job-wrecker',
   ]:
     ensure   => 'latest',
     provider => 'pip',
