@@ -11,7 +11,7 @@ class profiles::jenkins_master () {
     'puppet-lint',
   ]:
     ensure          => 'latest'
-  } ->
+  } 
   class{'nodejs':}
   package{'azure-cli':
     ensure   => 'latest',
