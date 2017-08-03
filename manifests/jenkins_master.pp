@@ -9,6 +9,8 @@ class profiles::jenkins_master () {
     'make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
     # Puppet Lint Syntax testing
     'puppet-lint',
+    # Virtualbox/Vagrant
+    'virtualbox','vagrant',
   ]:
     ensure          => 'latest'
   } 
@@ -138,6 +140,7 @@ class profiles::jenkins_master () {
 #     'credentials'                         => {},
       'credentials-binding'                 => {},
       'dashboard-view'                      => {},
+      'database-mysql'                      => {},
       'deployment-notification'             => {},
       'display-url-api'                     => {},
       'docker-workflow'                     => {},
