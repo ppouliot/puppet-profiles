@@ -18,6 +18,7 @@ class profiles::jenkins_master () {
   package{'azure-cli':
     ensure   => 'latest',
     provider => 'npm',
+    require  => Class['nodejs'],
   }
 
 
