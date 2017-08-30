@@ -31,6 +31,8 @@ class profiles::jenkins_master () {
     'jenkins-job-builder',
     # JJW
     'jenkins-job-wrecker',
+    # ansible
+    'ansible',
   ]:
     ensure   => 'latest',
     provider => 'pip',
