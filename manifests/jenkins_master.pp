@@ -270,7 +270,8 @@ class profiles::jenkins_master () {
       'slave-squatter'                   => {},
       'slave-status'                     => {},
       'slave-utilization-plugin'         => {},
-      'structs'                          => {},
+#  Structs is now part of default module
+#      'structs'                          => {},
       'stackhammer'                      => {},
       'started-by-envvar'                => {},
       'status-view'                      => {},
