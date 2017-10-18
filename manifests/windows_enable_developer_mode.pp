@@ -10,11 +10,11 @@ class profiles::windows10_enable_developer_mode {
     } ->
 
 #   windowsfeature{'Microsoft-Windows-Subsystem-Linux': }
-    dism{[
-      'Microsoft-Windows-Subsystem-Linux',
-      'NetFx3',
-    ]:
-      ensure => present,
-    }
+#    dism{[
+#      'Microsoft-Windows-Subsystem-Linux',
+#      'NetFx3',
+#    ]:
+#      ensure => present,
+#    }
 
 }
