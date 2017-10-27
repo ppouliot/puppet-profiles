@@ -6,13 +6,13 @@ class profiles::jenkins_master () {
     # httpasswd file management tools
     'apache2-utils',
     # Beaker Requrements
-    'make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
+    'git','make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
     # Puppet Lint Syntax testing
     'puppet-lint',
     # Virtualbox/Vagrant
     'virtualbox','vagrant',
   ]:
-    ensure          => 'latest'
+    ensure => 'latest'
   } 
   class{'nodejs':
     manage_package_repo       => false,
