@@ -6,7 +6,7 @@ class profiles::jenkins_master () {
     # httpasswd file management tools
     'apache2-utils',
     # Beaker Requrements
-    'git','make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
+    'make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
     # Puppet Lint Syntax testing
     'puppet-lint',
     # Virtualbox/Vagrant
@@ -310,7 +310,7 @@ class profiles::jenkins_master () {
       'vncviewer'                        => {},
     },
   }
-
+  include git
   git::config { 'user.name':
 #    value => 'hypervci',
     value => 'primeministerp',
@@ -319,5 +319,8 @@ class profiles::jenkins_master () {
   git::config { 'user.email':
 #    value => 'hyper-v_ci@microsoft.com',
     value => 'primeministerpete@gmail.com',
+  }
+  Vcsrepo{
+    Require => Package['git'],
   }
 }
