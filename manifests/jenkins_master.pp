@@ -321,6 +321,6 @@ class profiles::jenkins_master () {
     value => 'primeministerpete@gmail.com',
   }
   Vcsrepo{
-    Require => Package['git'],
+    require => Package['git'],
   }
 }
