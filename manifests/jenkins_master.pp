@@ -90,7 +90,6 @@ class profiles::jenkins_master () {
     configure_firewall                   => true,
     config_hash                          => {
       'HTTP_PORT'                        => {'value' => '9000' }
-      'usSecurity'			 => false,
     },
     user_hash => {
        'jenkins' => {
