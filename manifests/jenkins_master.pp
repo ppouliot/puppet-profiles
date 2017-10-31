@@ -267,7 +267,8 @@ class profiles::jenkins_master () {
       'ssh-slaves'                       => {},
       'shared-workspace'                 => {},
       'ssh-credentials'                  => {},
-      'scp'                              => {},
+# SCP Plugin disabled due to security issue
+#      'scp'                              => {},
       'scm-api'                          => {},
       'sidebar-link'                     => {},
       'swarm'                            => {},
