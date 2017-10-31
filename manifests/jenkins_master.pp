@@ -90,6 +90,7 @@ class profiles::jenkins_master () {
     configure_firewall                   => true,
     config_hash                          => {
       'HTTP_PORT'                        => {'value' => '9000' }
+      'usSecurity'			 => false,
     },
     plugin_hash                          => {
       'ace-editor'                          => {},
@@ -309,9 +310,9 @@ class profiles::jenkins_master () {
       'vncviewer'                        => {},
     },
   }
-  jenkins_authorization_strategy { 'hudson.security.AuthorizationStrategy$Unsecured':
-    ensure => 'present',
-  }
+#  jenkins_authorization_strategy { 'hudson.security.AuthorizationStrategy$Unsecured':
+#    ensure => 'present',
+#  }
   include git
   git::config { 'user.name':
 #    value => 'hypervci',
