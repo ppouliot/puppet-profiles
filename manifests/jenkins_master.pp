@@ -92,6 +92,12 @@ class profiles::jenkins_master () {
       'HTTP_PORT'                        => {'value' => '9000' }
       'usSecurity'			 => false,
     },
+    user_hash => {
+       'jenkins' => {
+         'password' => 'jenkins',
+         'email'    => 'jenkins@jenkins-master.rakops',
+       },
+    },
     plugin_hash                          => {
       'ace-editor'                          => {},
       'analysis-core'                       => {},
