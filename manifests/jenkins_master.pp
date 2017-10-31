@@ -206,7 +206,8 @@ class profiles::jenkins_master () {
       'libvirt-slave'                    => {},
       'logging'                          => {},
       'mailer'                           => {},
-      'mavin-plugin'                     => {},
+# Disable due to error when retrieving
+#      'mavin-plugin'                     => {},
       'mapdb-api'                        => {},
       'matrix-auth'                      => {},
       'matrix-project'                   => {},
