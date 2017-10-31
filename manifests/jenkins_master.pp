@@ -308,6 +308,9 @@ class profiles::jenkins_master () {
       'vncviewer'                        => {},
     },
   }
+  jenkins_authorization_strategy { 'hudson.security.AuthorizationStrategy$Unsecured':
+    ensure => 'present',
+  }
   include git
   git::config { 'user.name':
 #    value => 'hypervci',
