@@ -194,6 +194,7 @@ class profiles::jenkins_master () {
       'global-post-script'                  => {},
       'global-variable-string-parameter'    => {},
       'groovy'                              => {},
+      'google-git-notes-publisher'          => {},
       'groovy-events-listener-plugin'       => {},
       'groovy-events-listener-plugin-master' => {},
       'groovy-label-assignment'             => {},
