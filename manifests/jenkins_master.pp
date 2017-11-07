@@ -186,6 +186,7 @@ class profiles::jenkins_master () {
       'git-userContent'                     => {},
       'github-branch-source'                => {},
       'github-issues'                       => {},
+      'github-oauth'                        => {},
       'github-pullrequest'                  => {},
       'github-pr-comment-build'             => {},
       'github-pr-coverage-status'           => {},
@@ -273,7 +274,7 @@ class profiles::jenkins_master () {
       'shared-workspace'                 => {},
       'ssh-credentials'                  => {},
       # SCP Plugin disabled due to security issue
-      'scp'                              => { 'enabled' => absent },
+#      'scp'                              => { 'enabled' => absent },
       'scm-api'                          => {},
       'sidebar-link'                     => {},
       'swarm'                            => {},
