@@ -271,6 +271,7 @@ class profiles::jenkins_master () {
       'resource-disposer'                => {},
       'saferestart'                      => {},
       'saltstack'                        => {},
+      'smart-jenkins'                    => {},
       'ssh-slaves'                       => {},
       'shared-workspace'                 => {},
       'ssh-credentials'                  => {},
