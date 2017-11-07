@@ -11,6 +11,8 @@ class profiles::jenkins_master () {
     'puppet-lint',
     # Virtualbox/Vagrant
     'virtualbox','vagrant',
+    # Additional Development Tools
+    'jq',
   ]:
     ensure => 'latest'
   } 
