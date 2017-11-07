@@ -104,7 +104,7 @@ class profiles::jenkins_master () {
       'antisamy-markup-formatter'           => {},
       'authentication-tokens'               => {},
       'ansicolor'                           => {},
-      'apache-httpscomponents-client-4-api' => {},
+      'apache-httpcomponents-client-4-api' => {},
       'azure-commons'                       => {},
       'azure-credentials'                   => {},
       'azure-vm-agents'                     => {},
