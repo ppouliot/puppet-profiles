@@ -167,6 +167,7 @@ class profiles::jenkins_master () {
       'docker-build-step'                   => {},
       'docker-build-publish'                => {},
       'docker-java-api'                     => {},
+      'dockerhub-notification'              => {},
       'durable-task'                        => {},
       'envinject'                           => {},
       'envinject-api'                       => {},
