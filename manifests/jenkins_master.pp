@@ -273,7 +273,7 @@ class profiles::jenkins_master () {
       'shared-workspace'                 => {},
       'ssh-credentials'                  => {},
       # SCP Plugin disabled due to security issue
-      'scp'                              => { 'enabled' => false },
+      'scp'                              => { 'ensure' => absent, 'enabled' => false },
       'scm-api'                          => {},
       'sidebar-link'                     => {},
       'swarm'                            => {},
