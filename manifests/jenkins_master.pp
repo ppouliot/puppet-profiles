@@ -105,9 +105,10 @@ class profiles::jenkins_master () {
       'authentication-tokens'               => {},
       'ansicolor'                           => {},
       'apache-httpscomponents-client-4-api' => {},
-      'azure-vm-agents'                     => {},
-      'azure-slave-plugin'                  => {},
+      'azure-commons'                       => {},
       'azure-credentials'                   => {},
+      'azure-vm-agents'                     => {},
+      'azure-slave-plugin'                  => { 'enabled' => false },
       'azure-publishersettings-credentials' => {},
       'azure-batch-parallel'                => {},
       'backup'                              => {},
@@ -271,8 +272,8 @@ class profiles::jenkins_master () {
       'ssh-slaves'                       => {},
       'shared-workspace'                 => {},
       'ssh-credentials'                  => {},
-# SCP Plugin disabled due to security issue
-#      'scp'                              => {},
+      # SCP Plugin disabled due to security issue
+      'scp'                              => { 'enabled' => false },
       'scm-api'                          => {},
       'sidebar-link'                     => {},
       'swarm'                            => {},
