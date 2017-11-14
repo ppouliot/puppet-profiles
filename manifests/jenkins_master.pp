@@ -230,7 +230,7 @@ class profiles::jenkins_master () {
       'matrix-project'                   => {},
       'maven-plugin'                     => {
         'version' => '3.0',
-        'enable' => true
+        'enabled' => true
       },
       'mission-control-view'             => {},
       'modernstatus'                     => {},
