@@ -228,7 +228,10 @@ class profiles::jenkins_master () {
       'mapdb-api'                        => {},
       'matrix-auth'                      => {},
       'matrix-project'                   => {},
-      'maven-plugin'                     => { 'version' => '3.0' },
+      'maven-plugin'                     => {
+        'version' => '3.0',
+        'enable' => true
+      },
       'mission-control-view'             => {},
       'modernstatus'                     => {},
       'momentjs'                         => {},
