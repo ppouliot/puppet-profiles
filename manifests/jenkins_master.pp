@@ -224,14 +224,10 @@ class profiles::jenkins_master () {
       'logging'                          => {},
       'mailer'                           => {},
 # Disable due to error when retrieving
-#      'mavin-plugin'                     => {},
       'mapdb-api'                        => {},
       'matrix-auth'                      => {},
       'matrix-project'                   => {},
-      'maven-plugin'                     => {
-        'version' => '3.0',
-        'enabled' => true
-      },
+      'maven-plugin'                     => {},
       'mission-control-view'             => {},
       'modernstatus'                     => {},
       'momentjs'                         => {},
