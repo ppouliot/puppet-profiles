@@ -6,7 +6,7 @@ class profiles::jenkins_master () {
     # httpasswd file management tools
     'apache2-utils',
     # Beaker Requrements
-    'make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
+    'bc','make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
     # Puppet Lint Syntax testing
     'puppet-lint',
     # Virtualbox/Vagrant
