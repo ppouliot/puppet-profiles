@@ -277,6 +277,7 @@ class profiles::jenkins_master () {
       'promoted-builds'                  => {},
       'python'                           => {},
       'run-condition'                    => {},
+      'ruby'                             => {},
       'ruby-runtime'                     => {},
       'resource-disposer'                => {},
       'saferestart'                      => {},
