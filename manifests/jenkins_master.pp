@@ -352,14 +352,14 @@ class profiles::jenkins_master () {
   Vcsrepo{
     require => Package['git'],
   }
-    file{'/home/jenkins/bin':
+    file{'/var/lib/jenkins/bin':
       ensure  => directory,
       owner   => 'jenkins',
       group   => 'jenkins',
       mode    => '0770',
       require => User['jenkins'],
     } -> 
-    file{'/home/jenkins/bin/github_curl_owner_repo_size.sh':
+    file{'/var/lib/jenkins/bin/github_curl_owner_repo_size.sh':
       ensure  => file,
       owner   => 'jenkins',
       group   => 'jenkins',
