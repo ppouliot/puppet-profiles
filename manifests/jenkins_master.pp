@@ -39,6 +39,7 @@ class profiles::jenkins_master () {
     'jenkins-job-wrecker',
     # ansible
     'ansible',
+    'PyGithub',
   ]:
     ensure   => 'latest',
     provider => 'pip',
