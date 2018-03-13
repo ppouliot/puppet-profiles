@@ -167,8 +167,6 @@ class profiles::jenkins_master () {
       'docker-java-api'                     => {},
       'dockerhub-notification'              => {},
       'durable-task'                        => {},
-      'envinject'                           => {},
-      'envinject-api'                       => {},
       'ez-templates'                        => {},
       'gerrit'                              => {},
       'gerrit-trigger'                      => {},
