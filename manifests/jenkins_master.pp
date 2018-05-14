@@ -10,7 +10,7 @@ class profiles::jenkins_master () {
     # Puppet Lint Syntax testing
     'puppet-lint',
     # Virtualbox/Vagrant
-    'virtualbox','vagrant',
+    'virtualbox',
     # Additional Development Tools
     'jq',
   ]:
@@ -26,7 +26,12 @@ class profiles::jenkins_master () {
     provider => 'npm',
 #    require  => Class['nodejs'],
   }
-
+  # Use Vagrant from mainstream and not from pkg mgmt.
+  package{'vagrant':
+    ensure   => installed,
+    provider => 'dpkg',
+    source   => 'https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.deb',
+  }
 
 
   class{'python':
