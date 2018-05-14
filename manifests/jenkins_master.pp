@@ -27,10 +27,9 @@ class profiles::jenkins_master () {
 #    require  => Class['nodejs'],
   }
   # Use Vagrant from mainstream and not from pkg mgmt.
-  package{'vagrant':
-    ensure   => installed,
-    provider => 'dpkg',
-    source   => 'https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.deb',
+  staging::deploy{'vagrant_2.1.1_linux_amd64.zip':
+    source => 'https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_linux_amd64.zip'
+    target => '/usr/local/bin',
   }
 
 
