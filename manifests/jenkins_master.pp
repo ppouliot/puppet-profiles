@@ -28,7 +28,7 @@ class profiles::jenkins_master () {
   }
   # Use Vagrant from mainstream and not from pkg mgmt.
   staging::deploy{'vagrant_2.1.1_linux_amd64.zip':
-    source => 'https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_linux_amd64.zip'
+    source => 'https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_linux_amd64.zip',
     target => '/usr/local/bin',
   }
 
