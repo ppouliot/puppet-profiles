@@ -13,6 +13,8 @@ class profiles::jenkins_master () {
     'virtualbox',
     # Additional Development Tools
     'jq',
+    # Hardware Control Tools
+    'ipmitool','freeipmi','openipmi',
   ]:
     ensure => 'latest'
   } 
