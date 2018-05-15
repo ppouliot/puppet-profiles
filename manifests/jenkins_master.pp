@@ -47,6 +47,9 @@ class profiles::jenkins_master () {
     # ansible
     'ansible',
     'PyGithub',
+    # redfish client
+    'python-redfish',
+    'sushy',
   ]:
     ensure   => 'latest',
     provider => 'pip',
