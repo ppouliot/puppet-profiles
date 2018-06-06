@@ -54,7 +54,7 @@ class profiles::supermicro {
   } notice('Intel PCH Driver(SCU): Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip version:4.6.0.1048')
 
   # Intel® X540 Dual port 10GBase-T
-  staging::file{''PRO_v22.10.zip':
+  staging::file{'PRO_v22.10.zip':
     source => 'ftp://ftp.supermicro.com/driver/LAN/Intel/PRO_v22.10.zip',
   } notice('Intel® X540 Dual port 10GBase-T PRO_v22.10.ziop version:22.10')
 
