@@ -2,6 +2,7 @@ class profiles::supermicro {
 
   $default_ipmi_username = 'ADMIN'
   $default_ipmi_passwd   = 'ADMIN'
+  $supermicro_download_path = '/opt/staging'
 
   # http://www.supermicro.com/support/bios/firmware.aspx
   
