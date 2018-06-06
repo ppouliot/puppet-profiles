@@ -13,6 +13,11 @@ class profiles::supermicro {
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4637/LP-X10DRT-P-PT-PIBF-PIBQ_BIOS_3.0a_release_notes.pdf',
   } notice('Supermicro X10DRT-P Bios X10DRT8_209 release notes 4637/LP-X10DRT-P-PT-PIBF-PIBQ_BIOS_3.0a_release_notes.pdf')
 
+  # X10_memory_config_guide.pdf
+  staging::file{'X10_memory_config_guide.pdf'
+    source => 'http://www.supermicro.com/support/resources/memory/X10_memory_config_guide.pdf'
+  } notice('X10 Serises DP Motherboads Memory Configuration Guide')
+
   # BMC/IPMI Firmware for Supermicro X10DRT-P
   staging::file{'REDFISH_X10_366.zip':
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip'
