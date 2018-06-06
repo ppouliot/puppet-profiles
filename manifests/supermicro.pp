@@ -34,7 +34,7 @@ class profiles::supermicro {
 
   # BMC/IPMI Firmware for Supermicro X10DRT-P
   archive{"${supermicro_download_path}/REDFISH_X10_366.zip":
-    source => "ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip"
+    source => "ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip",
     extract => true,
     extract_path => "${supermicro_download_path}",
   } notice("Supermicro X10DRT-P BMC/IPMI Firmware  arcive REDFISH_X10_366.zip")
