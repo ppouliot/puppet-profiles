@@ -1,7 +1,7 @@
 class profiles::supermicro {
 
-  $supermicro_ipmi_username = 'ADMIN'
-  $supermicro_ipmi_passwd   = 'ADMIN'
+  $default_ipmi_username = 'ADMIN'
+  $default_ipmi_passwd   = 'ADMIN'
 
   # http://www.supermicro.com/support/bios/firmware.aspx
   
