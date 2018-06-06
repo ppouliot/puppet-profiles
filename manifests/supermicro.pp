@@ -4,6 +4,12 @@ class profiles::supermicro {
   # Supermicro X10DRT-P
   notice('Supermicro X10DRT-P')
 
+
+  # User Manual
+  staging::file{'MNL-1542.pdf':
+    source => 'http://www.supermicro.com/manuals/motherboard/C600/MNL-1542.pdf',
+  } notice('Supermicro X10DRT-P User Manual MNL-1542.pdf')
+
   # BIOS Supermicro X10DRT-P
   staging::file{'X10DRT8_209.zip':
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4637/X10DRT8_209.zip',
