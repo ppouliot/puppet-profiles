@@ -1,9 +1,12 @@
 class profiles::supermicro {
+
+  $supermicro_ipmi_username = 'ADMIN'
+  $supermicro_ipmi_passwd   = 'ADMIN'
+
   # http://www.supermicro.com/support/bios/firmware.aspx
   
   # Supermicro X10DRT-P
   notice('Supermicro X10DRT-P')
-
 
   # User Manual
   staging::file{'MNL-1542.pdf':
@@ -78,4 +81,3 @@ class profiles::supermicro {
   } notice('SuperMicro Download Driver CD CDR-X10_1.11_for_Intel_X10_platform.iso')
 
 }
-
