@@ -14,8 +14,12 @@ class profiles::supermicro {
   } notice('Supermicro X10DRT-P User Manual MNL-1542.pdf')
 
   # BIOS Supermicro X10DRT-P
-  staging::file{'X10DRT8_209.zip':
+  # staging::file{'X10DRT8_209.zip':
+  #  staging::deploy{'X10DRT8_209.zip':
+  archive{'/opt/staging/X10DRT8_209.zip':
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4637/X10DRT8_209.zip',
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Supermicro X10DRT-P Bios Firmware arcive X10DRT8_209.zip')
 
   staging::file{'LP-X10DRT-P-PT-PIBF-PIBQ_BIOS_3.0a_release_notes.pdf':
@@ -28,8 +32,10 @@ class profiles::supermicro {
   } notice('X10 Serises DP Motherboads Memory Configuration Guide')
 
   # BMC/IPMI Firmware for Supermicro X10DRT-P
-  staging::file{'REDFISH_X10_366.zip':
+# staging::file{'REDFISH_X10_366.zip':
+  staging::deploy{'REDFISH_X10_366.zip':
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip'
+    target => '/tmp'
   } notice('Supermicro X10DRT-P BMC/IPMI Firmware  arcive REDFISH_X10_366.zip')
 
   staging::file{'LP-X10DRT-P-PT-PIBF-PIBQ_IPMI_3.66_release_notes.pdf':
