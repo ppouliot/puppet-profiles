@@ -35,6 +35,35 @@ class profiles::supermicro {
     source       => 'ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip',
     extract      => true,
     extract_path => "${supermicro_download_path}",
+    creates      => [
+      "${supermicro_download_path}/REDFISH_X10_366.bin",
+      "${supermicro_download_path}/2.07/",
+      "${supermicro_download_path}/2.07/dos",
+      "${supermicro_download_path}/2.07/dos/AdUpdate.exe",
+      "${supermicro_download_path}/2.07/linux",
+      "${supermicro_download_path}/2.07/linux/x32",
+      "${supermicro_download_path}/2.07/linux/x32/AlUpdate",
+      "${supermicro_download_path}/2.07/linux/x64",
+      "${supermicro_download_path}/2.07/linux/x64/AlUpdate",
+      "${supermicro_download_path}/2.07/ReleaseNote.txt",
+      "${supermicro_download_path}/2.07/windows",
+      "${supermicro_download_path}/2.07/windows/x32",
+      "${supermicro_download_path}/2.07/windows/x32/AwUpdate.exe",
+      "${supermicro_download_path}/2.07/windows/x32/phymem32.sys",
+      "${supermicro_download_path}/2.07/windows/x32/pmdll32.dll",
+      "${supermicro_download_path}/2.07/windows/x32/superbmc32.sys",
+      "${supermicro_download_path}/2.07/windows/x32/superdll_ssm32.dll",
+      "${supermicro_download_path}/2.07/windows/x64",
+      "${supermicro_download_path}/2.07/windows/x64/AwUpdate.exe",
+      "${supermicro_download_path}/2.07/windows/x64/phymem64.sys",
+      "${supermicro_download_path}/2.07/windows/x64/pmdll64.dll",
+      "${supermicro_download_path}/2.07/windows/x64/superbmc.sys",
+      "${supermicro_download_path}/2.07/windows/x64/superdll_ssm64.dll",
+      "${supermicro_download_path}/IPMI",
+      "${supermicro_download_path}/Redfish_Ref_Guide_1",
+    ],
+  }
+
   } notice('Supermicro X10DRT-P BMC/IPMI Firmware  arcive REDFISH_X10_366.zip')
 
   archive{"${supermicro_download_path}/LP-X10DRT-P-PT-PIBF-PIBQ_IPMI_3.66_release_notes.pdf":
