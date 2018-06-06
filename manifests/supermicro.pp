@@ -61,7 +61,7 @@ class profiles::supermicro {
   # Intel Utility
   staging::file{'IATA_CD.exe':
     source => 'ftp://ftp.supermicro.com/driver/SATA/Intel_PCH_RAID_Romley_RSTE/Management/4.6.0.1048/IATA_CD.exe',
-  } notice('Intel Utility IATA_CD.exe version:4.6.0.1048') }
+  } notice('Intel Utility IATA_CD.exe version:4.6.0.1048')
 
   # Intel INF for C612
   staging::file{'Chipset_v10.1.2.80.zip':
@@ -79,5 +79,4 @@ class profiles::supermicro {
   staging::file{'CDR-X10_1.11_for_Intel_X10_platform.iso':
     source => 'ftp://ftp.supermicro.com/CDR_Images/CDR-X10/CDR-X10_1.11_for_Intel_X10_platform.iso',
   } notice('SuperMicro Download Driver CD CDR-X10_1.11_for_Intel_X10_platform.iso')
-
 }
