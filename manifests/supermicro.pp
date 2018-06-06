@@ -37,7 +37,7 @@ class profiles::supermicro {
 
   # Aspeed AST2400/AST2500 Graphic Driver
   staging::file{'ASPEED.zip':
-    source => ftp://ftp.supermicro.com/driver/VGA/ASPEED/ASPEED.zip',
+    source => 'ftp://ftp.supermicro.com/driver/VGA/ASPEED/ASPEED.zip',
   } notice('Aspeed AST2400/AST2500 Graphic Driver')
 
   # Intel PCH Driver(SATA)
