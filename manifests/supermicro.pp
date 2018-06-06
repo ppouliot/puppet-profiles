@@ -56,7 +56,7 @@ class profiles::supermicro {
   } notice('Intel® X540 Dual port 10GBase-T PRO_v22.10.ziop version:22.10')
 
   # Intel Utility
-  staging::file{'IATA_CD.exe',
+  staging::file{'IATA_CD.exe':
     source => 'ftp://ftp.supermicro.com/driver/SATA/Intel_PCH_RAID_Romley_RSTE/Management/4.6.0.1048/IATA_CD.exe',
   } notice('Intel Utility IATA_CD.exe version:4.6.0.1048') }
 
