@@ -32,10 +32,10 @@ class profiles::supermicro {
   } notice('X10 Serises DP Motherboads Memory Configuration Guide')
 
   # BMC/IPMI Firmware for Supermicro X10DRT-P
-# staging::file{'REDFISH_X10_366.zip':
-  staging::deploy{'REDFISH_X10_366.zip':
+  archive{'/opt/staging/REDFISH_X10_366.zip':
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip'
-    target => '/tmp'
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Supermicro X10DRT-P BMC/IPMI Firmware  arcive REDFISH_X10_366.zip')
 
   staging::file{'LP-X10DRT-P-PT-PIBF-PIBQ_IPMI_3.66_release_notes.pdf':
@@ -45,23 +45,31 @@ class profiles::supermicro {
   # Windows Device Drivers
 
   # Aspeed AST2400/AST2500 Graphic Driver
-  staging::file{'ASPEED.zip':
+  archive{'/opt/staging/ASPEED.zip':
     source => 'ftp://ftp.supermicro.com/driver/VGA/ASPEED/ASPEED.zip',
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Aspeed AST2400/AST2500 Graphic Driver')
 
   # Intel PCH Driver(SATA)
-  staging::file{'Intel_PCH_RAID_Romley_4.6.0.1048_Win.zip':
+  archive{'/opt/staging/Intel_PCH_RAID_Romley_4.6.0.1048_Win.zip':
     source => 'ftp://ftp.supermicro.com/driver/SATA/Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip',
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Intel PCH Driver(SATA): Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip version:4.6.0.1048')
 
   # Intel PCH Driver(SCU)
-  staging::file{'Intel_PCH_SCU_Romley_4.6.0.1048_Win.zip':
+  archive{'/opt/staging/Intel_PCH_SCU_Romley_4.6.0.1048_Win.zip':
     source => 'ftp://ftp.supermicro.com/driver/SCU/Intel_PCH_SCU_Romley/Windows/4.6.0.1048/Win.zip',
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Intel PCH Driver(SCU): Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip version:4.6.0.1048')
 
   # Intel® X540 Dual port 10GBase-T
-  staging::file{'PRO_v22.10.zip':
+  archive{'/opt/staging/PRO_v22.10.zip':
     source => 'ftp://ftp.supermicro.com/driver/LAN/Intel/PRO_v22.10.zip',
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Intel® X540 Dual port 10GBase-T PRO_v22.10.ziop version:22.10')
 
   # Intel Utility
@@ -70,8 +78,10 @@ class profiles::supermicro {
   } notice('Intel Utility IATA_CD.exe version:4.6.0.1048')
 
   # Intel INF for C612
-  staging::file{'Chipset_v10.1.2.80.zip':
+  archive{'Chipset_v10.1.2.80.zip':
     source => 'ftp://ftp.supermicro.com/driver/Intel_INF/Skylake_Series_Chipset/Chipset_v10.1.2.80.zip',
+    extract => true,
+    extract_path => '/opt/staging',
   } notice('Intel INF for C612 Chipset_v10.1.2.80.zip version:10.1.2.80')
 
   # SuperMicro Download Driver CD
