@@ -20,7 +20,7 @@ class profiles::supermicro {
   } notice('Supermicro X10DRT-P Bios X10DRT8_209 release notes 4637/LP-X10DRT-P-PT-PIBF-PIBQ_BIOS_3.0a_release_notes.pdf')
 
   # X10_memory_config_guide.pdf
-  staging::file{'X10_memory_config_guide.pdf'
+  staging::file{'X10_memory_config_guide.pdf':
     source => 'http://www.supermicro.com/support/resources/memory/X10_memory_config_guide.pdf'
   } notice('X10 Serises DP Motherboads Memory Configuration Guide')
 
