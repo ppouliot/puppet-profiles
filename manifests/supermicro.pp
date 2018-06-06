@@ -5,7 +5,7 @@ class profiles::supermicro {
   notice('Supermicro X10DRT-P')
 
   # BIOS Supermicro X10DRT-P
-  staging::file{'4637/X10DRT8_209.zip':
+  staging::file{'X10DRT8_209.zip':
     source => 'ftp://ftp.supermicro.com/Bios/softfiles/4637/X10DRT8_209.zip',
   } notice('Supermicro X10DRT-P Bios Firmware arcive X10DRT8_209.zip')
 
