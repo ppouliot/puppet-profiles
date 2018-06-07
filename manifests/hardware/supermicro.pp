@@ -1,13 +1,27 @@
-class profiles::supermicro {
+class profiles::hardware::supermicro {
 
-  $default_ipmi_username = "ADMIN"
-  $default_ipmi_passwd   = "ADMIN"
-  $supermicro_download_path = "/opt/staging"
+  $default_ipmi_username    = "ADMIN"
+  $default_ipmi_passwd      = "ADMIN"
+  $supermicro_download_path = "/opt/archive/hardware/supermicro/X10DRT-P"
+
+
+  file{[
+    "${supermicro_download_path}",
+    "${supermicro_download_path}/BIOS",
+    "${supermicro_download_path}/BMC-IPMI",
+    "${supermicro_download_path}/SATA/Intel_PCH_RAID_Romley_RSTE",
+    "${supermicro_download_path}/SCU/Intel_PCH_SCU_Romley",
+    "${supermicro_download_path}/Intel_INF/Skylake_Series_Chipset",
+    "${supermicro_download_path}/Video",
+    ]:
+    ensure => directory,
+  }
 
   # http://www.supermicro.com/support/bios/firmware.aspx
   
   # Supermicro X10DRT-P
   notice("Supermicro X10DRT-P")
+  warning("Default ::manufacturer IPMI User: ${default_ipmi_username} Password: ${default_ipmi_passwd} from ${::manufacturer}")
 
   # User Manual
   archive{"${supermicro_download_path}/MNL-1542.pdf":
@@ -15,10 +29,10 @@ class profiles::supermicro {
   } notice('Supermicro X10DRT-P User Manual MNL-1542.pdf')
 
   # BIOS Supermicro X10DRT-P
-  archive{"${supermicro_download_path}/X10DRT8_209.zip":
+  archive{"${supermicro_download_path}/BIOS/X10DRT8_209.zip":
     source       => 'ftp://ftp.supermicro.com/Bios/softfiles/4637/X10DRT8_209.zip',
     extract      => true,
-    extract_path => "${supermicro_download_path}",
+    extract_path => "${supermicro_download_path}/BIOS",
   } notice("Supermicro X10DRT-P Bios Firmware arcive X10DRT8_209.zip")
 
   archive{"${supermicro_download_path}/LP-X10DRT-P-PT-PIBF-PIBQ_BIOS_3.0a_release_notes.pdf":
@@ -31,36 +45,36 @@ class profiles::supermicro {
   } notice('X10 Serises DP Motherboads Memory Configuration Guide')
 
   # BMC/IPMI Firmware for Supermicro X10DRT-P
-  archive{"${supermicro_download_path}/REDFISH_X10_366.zip":
+  archive{"${supermicro_download_path}/BMC-IPMI/REDFISH_X10_366.zip":
     source       => 'ftp://ftp.supermicro.com/Bios/softfiles/4640/REDFISH_X10_366.zip',
     extract      => true,
     extract_path => "${supermicro_download_path}",
     creates      => [
-      "${supermicro_download_path}/REDFISH_X10_366.bin",
-      "${supermicro_download_path}/2.07/",
-      "${supermicro_download_path}/2.07/dos",
-      "${supermicro_download_path}/2.07/dos/AdUpdate.exe",
-      "${supermicro_download_path}/2.07/linux",
-      "${supermicro_download_path}/2.07/linux/x32",
-      "${supermicro_download_path}/2.07/linux/x32/AlUpdate",
-      "${supermicro_download_path}/2.07/linux/x64",
-      "${supermicro_download_path}/2.07/linux/x64/AlUpdate",
-      "${supermicro_download_path}/2.07/ReleaseNote.txt",
-      "${supermicro_download_path}/2.07/windows",
-      "${supermicro_download_path}/2.07/windows/x32",
-      "${supermicro_download_path}/2.07/windows/x32/AwUpdate.exe",
-      "${supermicro_download_path}/2.07/windows/x32/phymem32.sys",
-      "${supermicro_download_path}/2.07/windows/x32/pmdll32.dll",
-      "${supermicro_download_path}/2.07/windows/x32/superbmc32.sys",
-      "${supermicro_download_path}/2.07/windows/x32/superdll_ssm32.dll",
-      "${supermicro_download_path}/2.07/windows/x64",
-      "${supermicro_download_path}/2.07/windows/x64/AwUpdate.exe",
-      "${supermicro_download_path}/2.07/windows/x64/phymem64.sys",
-      "${supermicro_download_path}/2.07/windows/x64/pmdll64.dll",
-      "${supermicro_download_path}/2.07/windows/x64/superbmc.sys",
-      "${supermicro_download_path}/2.07/windows/x64/superdll_ssm64.dll",
-      "${supermicro_download_path}/IPMI",
-      "${supermicro_download_path}/Redfish_Ref_Guide_1",
+      "${supermicro_download_path}/BMC-IPMI/REDFISH_X10_366.bin",
+      "${supermicro_download_path}/BMC-IPMI/2.07/",
+      "${supermicro_download_path}/BMC-IPMI/2.07/dos",
+      "${supermicro_download_path}/BMC-IPMI/2.07/dos/AdUpdate.exe",
+      "${supermicro_download_path}/BMC-IPMI/2.07/linux",
+      "${supermicro_download_path}/BMC-IPMI/2.07/linux/x32",
+      "${supermicro_download_path}/BMC-IPMI/2.07/linux/x32/AlUpdate",
+      "${supermicro_download_path}/BMC-IPMI/2.07/linux/x64",
+      "${supermicro_download_path}/BMC-IPMI/2.07/linux/x64/AlUpdate",
+      "${supermicro_download_path}/BMC-IPMI/2.07/ReleaseNote.txt",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x32",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x32/AwUpdate.exe",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x32/phymem32.sys",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x32/pmdll32.dll",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x32/superbmc32.sys",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x32/superdll_ssm32.dll",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x64",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x64/AwUpdate.exe",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x64/phymem64.sys",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x64/pmdll64.dll",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x64/superbmc.sys",
+      "${supermicro_download_path}/BMC-IPMI/2.07/windows/x64/superdll_ssm64.dll",
+      "${supermicro_download_path}/BMC-IPMI/IPMI",
+      "${supermicro_download_path}/BMC-IPMI/Redfish_Ref_Guide_1",
     ],
   }
 
@@ -73,24 +87,28 @@ class profiles::supermicro {
   # Windows Device Drivers
 
   # Aspeed AST2400/AST2500 Graphic Driver
-  archive{"${supermicro_download_path}/ASPEED.zip":
+
+  archive{"${supermicro_download_path}/Video/ASPEED.zip":
     source       => 'ftp://ftp.supermicro.com/driver/VGA/ASPEED/ASPEED.zip',
     extract      => true,
-    extract_path => "${supermicro_download_path}",
+    extract_path => "${supermicro_download_path}/Video",
+    require      => File["${supermicro_download_path}/Video"],
   } notice("Aspeed AST2400/AST2500 Graphic Driver")
 
   # Intel PCH Driver(SATA)
-  archive{"${supermicro_download_path}/Intel_PCH_RAID_Romley_4.6.0.1048_Win.zip":
+    "${supermicro_download_path}/SATA/Intel_PCH_RAID_Romley_RSTE",
+  archive{"${supermicro_download_path}/SATA/Intel_PCH_RAID_Romley_RSTE/Intel_PCH_RAID_Romley_4.6.0.1048_Win.zip":
     source       => 'ftp://ftp.supermicro.com/driver/SATA/Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip',
     extract      => true,
-    extract_path => "${supermicro_download_path}",
+    extract_path => "${supermicro_download_path}/SATA/Intel_PCH_RAID_Romley_RSTE",
+    require      => File["${supermicro_download_path}/SATA/Intel_PCH_RAID_Romley_RSTE"],
   } notice('Intel PCH Driver(SATA): Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip version:4.6.0.1048')
 
   # Intel PCH Driver(SCU)
-  archive{"${supermicro_download_path}/Intel_PCH_SCU_Romley_4.6.0.1048_Win.zip":
+  archive{"${supermicro_download_path}/SCU/Intel_PCH_SCU_Romley/Intel_PCH_SCU_Romley_4.6.0.1048_Win.zip":
     source       => 'ftp://ftp.supermicro.com/driver/SCU/Intel_PCH_SCU_Romley/Windows/4.6.0.1048/Win.zip',
     extract      => true,
-    extract_path => "${supermicro_download_path}",
+    extract_path => "${supermicro_download_path}/SCU/Intel_PCH_SCU_Romley",
   } notice('Intel PCH Driver(SCU): Intel_PCH_RAID_Romley_RSTE/Windows/4.6.0.1048/Win.zip version:4.6.0.1048')
 
   # Intel® X540 Dual port 10GBase-T
@@ -106,6 +124,7 @@ class profiles::supermicro {
   } notice("Intel Utility IATA_CD.exe version:4.6.0.1048")
 
   # Intel INF for C612
+    "${supermicro_download_path}/SATA/Intel_PCH_RAID_Romley_RSTE",
   archive{"${supermicro_download_path}/Chipset_v10.1.2.80.zip":
     source       => 'ftp://ftp.supermicro.com/driver/Intel_INF/Skylake_Series_Chipset/Chipset_v10.1.2.80.zip',
     extract      => true,
