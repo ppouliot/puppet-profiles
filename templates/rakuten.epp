@@ -1,0 +1,29 @@
+__________         __           __                 
+\______   \_____  |  | ____ ___/  |_  ____   ____  
+ |       _/\__  \ |  |/ /  |  \   __\/ __ \ /    \ 
+ |    |   \ / __ \|    <|  |  /|  | \  ___/|   |  \
+ |____|_  /(____  /__|_ \____/ |__|  \___  >___|  /
+        \/      \/     \/                \/     \/ 
+__________         __   ________                   
+\______   \_____  |  | _\_____  \ ______  ______   
+ |       _/\__  \ |  |/ //   |   \\____ \/  ___/   
+ |    |   \ / __ \|    </    |    \  |_> >___ \    
+ |____|_  /(____  /__|_ \_______  /   __/____  >   
+        \/      \/     \/       \/|__|       \/    
+
+#####################################################
+System Information
+------------------
+Name:       <%= $facts[fqdn] %>                          
+Uptime:     <%= $facts[uptime] %>                        
+CPU(<%= $facts[processorcount] %>):     <%= $facts[processor0] %> 
+Memory:     <%= $facts[memorysize] %>                    
+SwapSize:   <%= $facts[swapsize] %>
+OS Release: <%= $facts[operatingsystem] %> <%= $facts[operatingsystemrelease] %>
+
+Puppet Information
+------------------
+Master:     <%= $facts[puppet_master_server] %>
+Version:    <%= $facts[puppetversion] %>
+
+#####################################################
