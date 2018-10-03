@@ -15,6 +15,7 @@ __________         __   ________
 System Information
 ------------------
 Name:       <%= $facts[fqdn] %>                          
+Rakuten Datacenter: <%= $facts[rakuten_datacenter] %>                          
 Uptime:     <%= $facts[uptime] %>                        
 CPU(<%= $facts[processorcount] %>):     <%= $facts[processor0] %> 
 Memory:     <%= $facts[memorysize] %>                    
