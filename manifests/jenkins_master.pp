@@ -235,7 +235,6 @@ class profiles::jenkins_master () {
       'plain-credentials'                => {},
       'parallel-test-executor'           => {},
       'parameterized-trigger'            => {},
-      'pipeline'                         => {},
       'pipeline-aggregator-view'         => {},
       'pipeline-build-step'              => {},
       'pipeline-graph-analysis'          => {},
