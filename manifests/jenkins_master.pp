@@ -1,4 +1,10 @@
 class profiles::jenkins_master () {
+
+  class {'docker':
+    tcp_bind    => 'tcp://0.0.0.0:4243',
+    socket_bind => 'unix:///var/run/docker.sock',
+  }
+
 #  class{'profiles::shipyard':}
   package{[
     # Light UI for Mgmt
@@ -9,6 +15,8 @@ class profiles::jenkins_master () {
     'bc','make','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
     # Puppet Lint Syntax testing
     'puppet-lint',
+    # Puppet Development kit
+    'pdk',
     # Virtualbox/Vagrant
     'virtualbox',
     # Additional Development Tools
@@ -50,6 +58,7 @@ class profiles::jenkins_master () {
     # redfish client
     'python-redfish',
     'sushy',
+    'docker-compose',
   ]:
     ensure   => 'latest',
     provider => 'pip',
