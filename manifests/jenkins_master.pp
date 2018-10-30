@@ -5,7 +5,6 @@ class profiles::jenkins_master () {
     socket_bind => 'unix:///var/run/docker.sock',
   }
 
-#  class{'profiles::shipyard':}
   package{[
     # Light UI for Mgmt
     'blackbox','tightvncserver','xterm','virt-manager',
