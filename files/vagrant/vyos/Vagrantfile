@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+required_plugins = %w(vagrant-scp vagrant-puppet-install vagrant-vbguest vagrant-vyos)
+
+plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
+if not plugins_to_install.empty?
+  puts "Installing plugins: #{plugins_to_install.join(' ')}"
+  if system "vagrant plugin install #{plugins_to_install.join(' ')}"
+    exec "vagrant #{ARGV.join(' ')}"
+  else
+    abort "Installation of one or more plugins has failed. Aborting."
+  end
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder "./bin", "$HOME/bin", :mount_options => ['dmode=775','fmode=777']
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", "2048"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.linked_clone = true
+  end
+#  config.vm.provision "shell", path: "bin/prepare.sh"
+#  config.vm.provision "shell", inline: "curl https://github.com/ppouliot.keys | tee -a ~/.ssh/authorized_keys"
+
+  # IPAM1 Definition
+  config.vm.define "vyos" do |v|
+# Libvirt Only Provider
+#   v.vm.box = "vyos/current"
+    v.vm.hostname = "vyos.contoso.ltd"
+    v.vm.network "public_network"
+    v.vm.network "private_network", ip: "192.168.1.254"
+  end
+end
+
