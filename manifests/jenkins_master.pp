@@ -9,7 +9,7 @@ class profiles::jenkins_master (
     use_upstream_package_source => true,
   }
 
-  include ::profiles::beaker
+  class{'profiles::beaker':}
   package{[
     # Light UI for Mgmt
     'blackbox','tightvncserver','xterm','virt-manager',
