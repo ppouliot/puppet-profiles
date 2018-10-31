@@ -12,8 +12,10 @@ class profiles::container_engine(
 
       default_script_path  = '/root'
       class {'docker':
-        tcp_bind    => 'tcp://0.0.0.0:4243',
-        socket_bind => 'unix:///var/run/docker.sock',
+        tcp_bind                     => 'tcp://0.0.0.0:4243',
+        socket_bind                  => 'unix:///var/run/docker.sock',
+        version                      => latest,
+        use_upstream_pacakage_source => true,
       } 
     }
     'Windows':{
