@@ -33,7 +33,7 @@ class profiles::jenkins_master (
     # httpasswd file management tools
     'apache2-utils',
     # Beaker Requrements
-    'bc','ruby-dev','libxml2-dev','libxslt1-dev','g++','zlib1g-dev',
+    'bc',
     # Puppet Lint Syntax testing
     'puppet-lint',
     # Puppet Development kit
