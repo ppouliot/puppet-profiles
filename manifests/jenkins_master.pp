@@ -1,7 +1,14 @@
 class profiles::jenkins_master (
 ) {
 
-  include ::profiles::container_engine
+
+  class {'docker':
+    tcp_bind                     => 'tcp://0.0.0.0:4243',
+    socket_bind                  => 'unix:///var/run/docker.sock',
+    version                      => latest,
+    use_upstream_pacakage_source => true,
+  }
+
   include ::profiles::beaker
   package{[
     # Light UI for Mgmt
