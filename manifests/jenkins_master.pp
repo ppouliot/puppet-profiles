@@ -3,10 +3,10 @@ class profiles::jenkins_master (
 
 
   class {'docker':
-    tcp_bind                     => 'tcp://0.0.0.0:4243',
-    socket_bind                  => 'unix:///var/run/docker.sock',
-    version                      => latest,
-    use_upstream_pacakage_source => true,
+    tcp_bind                    => 'tcp://0.0.0.0:4243',
+    socket_bind                 => 'unix:///var/run/docker.sock',
+    version                     => latest,
+    use_upstream_package_source => true,
   }
 
   include ::profiles::beaker
