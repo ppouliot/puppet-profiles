@@ -10,16 +10,15 @@ class profiles::container_engine(
   case $kernel {
     'Linux':{
 
-      default_script_path  = 'root'
+      default_script_path  = '/root'
       class {'docker':
         tcp_bind    => 'tcp://0.0.0.0:4243',
         socket_bind => 'unix:///var/run/docker.sock',
       } 
-  }
-
-  'Windows':{
+    }
+    'Windows':{
       default_script_path  = 'C:/ProgramData'
-  }
+    }
     default:{
       warning("$::fqdn does not meet the requirements currently.")
     }
@@ -36,29 +35,17 @@ class profiles::container_engine(
     source => 'puppet:///modules/profiles/dockerhost_remove_stale_containers.sh',
   }
 
-  file{"$default_script_path/docker_host_join_shipyard.sh":
-    ensure => file,
-    mode   => '0777',
-    source => 'puppet:///modules/profiles/dockerhost_join_shipyard.sh',
-  }
-
   case $::operatingsystem {
     'Ubuntu':{
       notice("Docker host ${::fqdn} is peparing Ubuntu Based containers")
       docker::image {'ubuntu':
         image_tag =>  ['trusty']
       }
-      docker::image{'msopenstack/sentinel-ubuntu':
-        image_tag =>  ['latest']
-      }
     }
     'Centos':{
       notice("docker host ${::fqdn} is peparing Centos Based containers")
       docker::image{'centos':
         image_tag =>  ['centos7']
-      }
-      docker::image{'msopenstack/sentinel-centos':
-        image_tag =>  ['latest']
       }
     }
     default:{

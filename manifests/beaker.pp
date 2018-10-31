@@ -11,7 +11,7 @@ class profiles::beaker(){
     'libxslt1-dev',
     'g++',
     'zlib1g-dev']:
-    ensure          => latest,
+    ensure => latest,
   } ->
 
   package{[

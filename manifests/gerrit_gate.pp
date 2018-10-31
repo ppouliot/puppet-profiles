@@ -47,7 +47,7 @@ class profiles::gerrit_gate {
     target            => '/opt/gerrit',
     auth_type         => 'http',
     database_backend  => 'mysql',
-    database_hostname => '10.13.1.29',
+    database_hostname => $::ipaddress,
     database_name     => 'puppetci_reviewdb',
     database_username => 'puppetci',
     database_password => 'hard24get',

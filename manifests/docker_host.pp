@@ -31,17 +31,11 @@ class profiles::docker_host(){
       docker::image {'ubuntu':
         image_tag =>  ['trusty']
       }
-      docker::image{'msopenstack/sentinel-ubuntu':
-        image_tag =>  ['latest']
-      }
     }
     'Centos':{
       notice("docker host ${::fqdn} is peparing Centos Based containers")
       docker::image{'centos':
         image_tag =>  ['centos7']
-      }
-      docker::image{'msopenstack/sentinel-centos':
-        image_tag =>  ['latest']
       }
     }
     default:{

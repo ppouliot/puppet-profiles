@@ -1,10 +1,8 @@
-class profiles::jenkins_master () {
+class profiles::jenkins_master (
+) {
 
-  class {'docker':
-    tcp_bind    => 'tcp://0.0.0.0:4243',
-    socket_bind => 'unix:///var/run/docker.sock',
-  }
-
+  include ::profiles::container_engine
+  include ::profiles::beaker
   package{[
     # Light UI for Mgmt
     'blackbox','tightvncserver','xterm','virt-manager',
@@ -36,8 +34,8 @@ class profiles::jenkins_master () {
 #    require  => Class['nodejs'],
   }
   # Use Vagrant from mainstream and not from pkg mgmt.
-  staging::deploy{'vagrant_2.1.1_linux_amd64.zip':
-    source => 'https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_linux_amd64.zip',
+  staging::deploy{'vagrant_2.2.2_linux_amd64.zip':
+    source => 'https://releases.hashicorp.com/vagrant/2.2.2/vagrant_2.1.1_linux_amd64.zip',
     target => '/usr/local/bin',
     creates => '/usr/local/bin/vagrant'
   }
@@ -83,25 +81,9 @@ class profiles::jenkins_master () {
   }
 
   # Gem Tools
-  package{[
-    # Ruby toolkit for the github api
-    'octokit',
-    # Puppetlabs Beaker Acceptance Testing Tool
-    'beaker',
-    'beaker-answers',
-    'beaker-facter',
-    'beaker-hiera',
-    'beaker-hostgenerator',
-    'beaker-librarian',
-    'beaker-pe',
-    'beaker-puppet_install_helper',
-    'beaker-rspec',
-    'beaker-testmode_switcher',
-    'beaker-windows',
-    'beaker_spec_helper',
-    'simp-beaker-helpers']:
-    ensure          => latest,
-    provider        => gem,
+  package{'octokit':
+    ensure   => latest,
+    provider => gem,
   }
 
   Jenkins::Plugin{ version => 'latest', }
@@ -330,12 +312,10 @@ class profiles::jenkins_master () {
 #  }
   include git
   git::config { 'user.name':
-#    value => 'hypervci',
     value => 'primeministerp',
   }
 
   git::config { 'user.email':
-#    value => 'hyper-v_ci@microsoft.com',
     value => 'primeministerpete@gmail.com',
   }
   Vcsrepo{
