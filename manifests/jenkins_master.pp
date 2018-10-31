@@ -34,12 +34,28 @@ class profiles::jenkins_master (
 #    require  => Class['nodejs'],
   }
   # Use Vagrant from mainstream and not from pkg mgmt.
-  staging::deploy{'vagrant_2.2.2_linux_amd64.zip':
-    source => 'https://releases.hashicorp.com/vagrant/2.2.2/vagrant_2.2.2_linux_amd64.zip',
-    target => '/usr/local/bin',
-    creates => '/usr/local/bin/vagrant'
+#  staging::deploy{'vagrant_2.2.2_linux_amd64.zip':
+#    source => 'https://releases.hashicorp.com/vagrant/2.2.2/vagrant_2.2.2_linux_amd64.zip',
+#    target => '/usr/local/bin',
+#    creates => '/usr/local/bin/vagrant'
+#  }
+
+# Use the Unoffical Vagrant Debian Repository
+# https://vagrant-deb.linestarve.com/
+  apt::source{'wolfgang42-vagrant':
+    comment  => 'The Unoffical Vagrant Debian Repository',
+    location => 'https://vagrant-deb.linestarve.com',
+    release  => 'any',
+    repos    => 'main',
+    key      => { 
+      id => 'AD319E0F7CFFA38B4D9F6E55CE3F3DE92099F7A4',
+      server => 'keyserver.ubuntu.com',
+    }
   }
 
+->package{'vagrant':
+    ensure   => 'latest',
+  }
 
   class{'python':
 #    pip     => 'present',
