@@ -17,7 +17,7 @@ class profiles::jenkins_master (
     # Virtualbox/Vagrant
     'virtualbox',
     # Additional Development Tools
-    'jq',
+    'jq','schroot',
     # Hardware Control Tools
     'ipmitool','freeipmi','openipmi',
   ]:
