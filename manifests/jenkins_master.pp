@@ -135,6 +135,7 @@ class profiles::jenkins_master (
       'azure-vm-agents'                     => {},
       'azure-publishersettings-credentials' => {},
       'azure-batch-parallel'                => {},
+      'blueocean'                           => {},
       'backup'                              => {},
       'branch-api'                          => {},
       'bouncycastle-api'                    => {},
