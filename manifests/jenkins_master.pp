@@ -150,7 +150,7 @@ class profiles::jenkins_master (
       'blueocean-i18n'                      => {},
       'blueocean-jira'                      => {},
       'blueocean-jwt'                       => {},
-      'blueocean-pipeline-api-ipml'         => {},
+      'blueocean-pipeline-api-impl'         => {},
       'blueocean-pipeline-editor'           => {},
       'blueocean-personalization'           => {},
       'blueocean-rest'                      => {},
