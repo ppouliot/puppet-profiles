@@ -32,16 +32,10 @@ class profiles::jenkins_master (
     'blackbox','tightvncserver','xterm','virt-manager',
     # httpasswd file management tools
     'apache2-utils',
-    # Beaker Requrements
-    'bc',
-    # Puppet Lint Syntax testing
-    'puppet-lint',
     # Puppet Development kit
-    'pdk',
+    'pdk','puppet-lint',
     # Virtualbox/Vagrant
-    'virtualbox',
-    # Additional Development Tools
-    'jq','schroot',
+    'virtualbox','jq','schroot','mercurial','bc',
     # Hardware Control Tools
     'ipmitool','freeipmi','openipmi',
   ]:
@@ -232,11 +226,11 @@ class profiles::jenkins_master (
       'global-variable-string-parameter'    => {},
       'google-git-notes-publisher'          => {},
       'handlebars'                          => {},
+      'handy-uri-templates-2-api'           => {},
       'htmlpublisher'                       => {},
       'hudson-wsclean-plugin'               => {},
       'icon-shim'                           => {},
       'jackson2-api'                        => {},
-#     'jenkins-multijob-plugin'             => {},
       'javadoc'                             => {},
       'jira'                                => {},
       'jsch'                                => {},
@@ -256,6 +250,7 @@ class profiles::jenkins_master (
       'matrix-auth'                         => {},
       'matrix-project'                      => {},
       'maven-plugin'                        => {},
+      'mercurial'                           => {},
       'mission-control-view'                => {},
       'modernstatus'                        => {},
       'momentjs'                            => {},
