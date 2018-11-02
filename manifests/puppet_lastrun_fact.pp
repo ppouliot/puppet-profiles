@@ -13,9 +13,12 @@ class profiles::puppet_lastrun_fact {
     }
   } 
 
-->exec{'Generating Puppet LastRUN information':
+  exec{'Generating Puppet LastRUN information':
     command => 'puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > /etc/puppetlabs/facter/facts.d/lastrun.json',
-    require => Class['fetchfact'],
     onlyif  => '/etc/puppetlabs/facter/detect_puppet_lastrun.sh',
+    require => [
+      Class['fetchfact'],
+      File['/etc/puppetlabs/facter/detect_puppet_lastrun.sh'],
+    ],
   }
 }
