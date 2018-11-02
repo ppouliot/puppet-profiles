@@ -291,7 +291,7 @@ class profiles::jenkins_master (
       'project-build-times'              => {},
       'project-stats-plugin'             => {},
       'promoted-builds'                  => {},
-      'psub-light'                       => {},
+      'pubsub-light'                     => {},
       'python'                           => {},
       'run-condition'                    => {},
       'ruby'                             => {},
