@@ -21,4 +21,5 @@ class profiles::puppet_lastrun_fact {
       File['/etc/puppetlabs/facter/detect_puppet_lastrun.sh'],
     ],
   }
+
 }
