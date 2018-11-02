@@ -8,12 +8,11 @@ class profiles::puppet_lastrun_fact {
     mode    => '0777',
     source  => 'puppet:///modules/profiles/detect_puppet_lastrun.sh',
     require => Class['fetchfact'],
-  }
+  } ->
 
   exec{'Generating Puppet LastRUN information':
-    command => 'puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > /etc/puppetlabs/facter/facts.d/lastrun.json',
+    command => '/opt/puppetlabs/bin/puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > /etc/puppetlabs/facter/facts.d/lastrun.json',
     onlyif  => '/etc/puppetlabs/facter/detect_puppet_lastrun.sh',
-    require =>  File['/etc/puppetlabs/facter/detect_puppet_lastrun.sh'],
   }
 
 }
