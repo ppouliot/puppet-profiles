@@ -4,7 +4,7 @@ class profiles::puppet_lastrun_fact {
   file{'/etc/puppetlabs/facter/detect_puppet_lastrun.sh':
     ensure  => 'file',
     owner   => 'root',
-    groupr  => 'root',
+    group   => 'root',
     mode    => '0777',
     source  => 'puppet:///modules/profiles/detect_puppet_lastrun.sh',
     require => File[
