@@ -143,7 +143,7 @@ class profiles::jenkins_master (
       'blueocean-core-js'                   => {},
       'blueocean-dashboard'                 => {},
       'blueocean-display-url'               => {},
-      'blueocean-design-language'           => {},
+      'jenkins-design-language'             => {},
       'blueocean-events'                    => {},
       'blueocean-git-pipeline'              => {},
       'blueocean-github-pipeline'           => {},
