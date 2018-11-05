@@ -31,7 +31,7 @@ class profiles::jenkins_master (
     # Light UI for Mgmt
     'blackbox','tightvncserver','xterm','virt-manager',
     # httpasswd file management tools
-    'apache2-utils',
+    'apache2-utils','expect',
     # Puppet Development kit
     'pdk','puppet-lint',
     # Virtualbox/Vagrant
