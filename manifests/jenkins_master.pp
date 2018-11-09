@@ -385,11 +385,11 @@ class profiles::jenkins_master (
 
     archive{'/var/lib/jenkins/userContent/puppet.svg':
      ensure => present,
-     source => 'https://avatars1.githubusercontent.com/u/234268',
+     source => 'https://www.nutanix.com/wp-content/uploads/2017/02/logo_puppet.svg'
     }
     archive{'/var/lib/jenkins/userContent/ansible.svg':
      ensure => present,
-     source => 'https://avatars1.githubusercontent.com/u/1507452',
+     source => 'https://www.elao.com/images/logo_ansible.svg',
     }
     archive{'/var/lib/jenkins/userContent/ansible_awx.svg':
      ensure => present,
@@ -397,6 +397,6 @@ class profiles::jenkins_master (
     }
     archive{'/var/lib/jenkins/userContent/chef.svg':
      ensure => present,
-     source => 'https://github.com/chef/chef-web-core/blob/master/source/assets/images/downloads/Chef_Regular.svg'
+     source => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Chef_logo.svg'
     }
 }
