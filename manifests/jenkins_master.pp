@@ -33,7 +33,7 @@ class profiles::jenkins_master (
     # httpasswd file management tools
     'apache2-utils','expect',
     # Puppet Development kit
-    'pdk','puppet-lint',
+    'pdk',
     # Virtualbox/Vagrant
     'virtualbox','jq','schroot','mercurial','bc',
     # Hardware Control Tools
@@ -71,8 +71,16 @@ class profiles::jenkins_master (
     provider => 'pip',
   }
 
-  # Puppet-lint additional ruby gems
+  # Puppet related additional ruby gems
   package{[
+    'msgpack',
+    'CFPropertyList',
+    'generate-puppetfile',
+    'ra10ke',
+    'hiera-eyaml',
+    'slack-notifier',
+    'minitar-cli',
+    'puppet-lint',
     'puppet-lint-resource_reference_syntax',
     'puppet-lint-file_ensure-check',
     'puppet-lint-classes_and_types_beginning_with_digits-check',
@@ -373,5 +381,22 @@ class profiles::jenkins_master (
       group   => 'jenkins',
       mode    => '0770',
       source => 'puppet:///modules/profiles/github_curl_owner_repo_size.sh',
+    }
+
+    archive{'/var/lib/jenkins/userContent/puppet.svg':
+     ensure => present,
+     source => 'https://avatars1.githubusercontent.com/u/234268',
+    }
+    archive{'/var/lib/jenkins/userContent/ansible.svg':
+     ensure => present,
+     source => 'https://avatars1.githubusercontent.com/u/1507452',
+    }
+    archive{'/var/lib/jenkins/userContent/ansible_awx.svg':
+     ensure => present,
+     source => 'https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg',
+    }
+    archive{'/var/lib/jenkins/userContent/chef.svg':
+     ensure => present,
+     source => 'https://github.com/chef/chef-web-core/blob/master/source/assets/images/downloads/Chef_Regular.svg'
     }
 }
