@@ -27,6 +27,8 @@ class profiles::jenkins_master (
     use_upstream_package_source => true,
   }
   include ::profiles::beaker
+  include ::profiles::golang
+  include ::profiles::puppet_gems
   package{[
     # Light UI for Mgmt
     'blackbox','tightvncserver','xterm','virt-manager',
@@ -69,33 +71,6 @@ class profiles::jenkins_master (
   ]:
     ensure   => 'latest',
     provider => 'pip',
-  }
-
-  # Puppet related additional ruby gems
-  package{[
-    'msgpack',
-    'CFPropertyList',
-    'generate-puppetfile',
-    'ra10ke',
-    'hiera-eyaml',
-    'slack-notifier',
-    'minitar-cli',
-    'puppet-lint',
-    'puppet-lint-resource_reference_syntax',
-    'puppet-lint-file_ensure-check',
-    'puppet-lint-classes_and_types_beginning_with_digits-check',
-    'puppet-lint-unquoted_string-check',
-    'puppet-lint-appends-check',
-    'puppet-lint-version_comparison-check',
-    'puppet-lint-undef_in_function-check',
-    'puppet-lint-trailing_comma-check',
-    'puppet-lint-spaceship_operator_without_tag-check',
-    'puppet-lint-leading_zero-check',
-    'puppet-lint-empty_string-check',
-    'puppet-lint-absolute_classname-check']:
-  #  ensure          => present,
-    ensure          => latest, 
-    provider        => gem,
   }
 
   # Gem Tools
@@ -368,6 +343,7 @@ class profiles::jenkins_master (
   Vcsrepo{
     require => Package['git'],
   }
+
     file{'/var/lib/jenkins/bin':
       ensure  => directory,
       owner   => 'jenkins',
