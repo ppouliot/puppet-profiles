@@ -326,7 +326,7 @@ class profiles::jenkins_master (
       'ws-cleanup'                          => {},
       'ws-ws-replacement'                   => {},
       'variant'                             => {},
-      'VirtualBox'                          => {},
+      'virtualbox'                          => {},
       'vboxwrapper'                         => {},
       'vncrecorder'                         => {},
       'vncviewer'                           => {},
