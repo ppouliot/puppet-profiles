@@ -307,6 +307,7 @@ class profiles::jenkins_master (
       'tracking-git'                        => {},
       'tracking-svn'                        => {},
       'translation'                         => {},
+      'trilead-api'                         => {},
       'uptime'                              => {},
       'workflow-api'                        => {},
 #      'workflow-aggregator '               => {},
