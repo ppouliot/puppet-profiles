@@ -281,6 +281,7 @@ class profiles::jenkins_master (
       'saltstack'                           => {},
       'ssh-slaves'                          => {},
       'shared-workspace'                    => {},
+      'ssh-agent'                           => {},
       'ssh-credentials'                     => {},
       'scm-api'                             => {},
       'sidebar-link'                        => {},
