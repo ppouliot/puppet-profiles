@@ -23,6 +23,9 @@ class profiles::ansible {
     default:{
       failure("ansible: ${fqdn} does not have ansible release package repository!")
     }
+  } ->
+  package{'ansible':
+    ensure => latest,
   }
 
 }
