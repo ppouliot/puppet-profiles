@@ -16,7 +16,9 @@ System Information
 ------------------
 Name:       <%= $facts[fqdn] %>                          
 Datacenter: <%= $facts[rakuten_datacenter] %>                          
-Country:    <%= $facts[location][country_flag_emoji] %>                          
+<% if $location::country_flag_emoji { -%>
+Country:    <%= $facts[location][country_flag_emoji] %>
+<% } -%>
 Uptime:     <%= $facts[uptime] %>                        
 CPU(<%= $facts[processorcount] %>):    <%= $facts[processor0] %> 
 Memory:     <%= $facts[memorysize] %>                    
@@ -27,6 +29,9 @@ Puppet Information
 ------------------
 Master:     <%= $facts[puppet_master_server] %>
 Version:    <%= $facts[puppetversion] %>
+<% if $lastrun_time { -%>
+Last Run:   <%= $facts[lastrun_time] %>
+<% } -%>
 
 Update Information
 ------------------

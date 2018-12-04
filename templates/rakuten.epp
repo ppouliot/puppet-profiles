@@ -16,7 +16,7 @@ System Information
 ------------------
 Name:       <%= $facts[fqdn] %>                          
 Datacenter: <%= $facts[rakuten_datacenter] %>                          
-<% if $facts[location][country_flag_emoji] { -%>
+<% if $location::country_flag_emoji { -%>
 Country:    <%= $facts[location][country_flag_emoji] %>
 <% } -%>
 Uptime:     <%= $facts[uptime] %>                        
