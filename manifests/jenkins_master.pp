@@ -1,6 +1,18 @@
 class profiles::jenkins_master (
 ) {
 
+  include git
+  git::config { 'user.name':
+    value => 'primeministerp',
+  }
+
+  git::config { 'user.email':
+    value => 'primeministerpete@gmail.com',
+  }
+  Vcsrepo{
+    require => Package['git'],
+  }
+
   # Use Vagrant from mainstream and not from pkg mgmt.
 #  staging::deploy{'vagrant_2.2.2_linux_amd64.zip':
 #    source => 'https://releases.hashicorp.com/vagrant/2.2.2/vagrant_2.2.2_linux_amd64.zip',
@@ -336,47 +348,60 @@ class profiles::jenkins_master (
 #  jenkins_authorization_strategy { 'hudson.security.AuthorizationStrategy$Unsecured':
 #    ensure => 'present',
 #  }
-  include git
-  git::config { 'user.name':
-    value => 'primeministerp',
+->file{'/var/lib/jenkins/bin':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0770',
+    require => User['jenkins'],
   }
-
-  git::config { 'user.email':
-    value => 'primeministerpete@gmail.com',
+->file{'/var/lib/jenkins/bin/jenkins-cli.jar':
+    ensure => file,
+    source => '/var/cache/jenkins/war/WEB-INF/jenkins-cli.jar',
+    mode   => '0777'
+    owner  => 'root',
+    group  => 'root',
   }
-  Vcsrepo{
-    require => Package['git'],
+->file{'/var/lib/jenkins/bin/github_curl_owner_repo_size.sh':
+    ensure  => file,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0770',
+    source => 'puppet:///modules/profiles/github_curl_owner_repo_size.sh',
   }
-
-    file{'/var/lib/jenkins/bin':
-      ensure  => directory,
-      owner   => 'jenkins',
-      group   => 'jenkins',
-      mode    => '0770',
-      require => User['jenkins'],
-    } -> 
-    file{'/var/lib/jenkins/bin/github_curl_owner_repo_size.sh':
-      ensure  => file,
-      owner   => 'jenkins',
-      group   => 'jenkins',
-      mode    => '0770',
-      source => 'puppet:///modules/profiles/github_curl_owner_repo_size.sh',
-    }
-
-    archive{'/var/lib/jenkins/userContent/puppet.svg':
-     ensure => present,
-     source => 'https://www.nutanix.com/wp-content/uploads/2017/02/logo_puppet.svg'
-    }
-    archive{'/var/lib/jenkins/userContent/ansible.svg':
-     ensure => present,
-     source => 'https://www.elao.com/images/logo_ansible.svg',
-    }
-    archive{'/var/lib/jenkins/userContent/ansible_awx.svg':
-     ensure => present,
-     source => 'https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg',
-    }
-    archive{'/var/lib/jenkins/userContent/chef.svg':
-     ensure => present,
-     source => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Chef_logo.svg'
-    }
+->file{'/var/lib/jenkins/userContent':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0644',
+    source => 'puppet:///modules/profiles/github_curl_owner_repo_size.sh',
+  }
+->archive{'/var/lib/jenkins/userContent/puppet.svg':
+    ensure => present,
+    source => 'https://www.nutanix.com/wp-content/uploads/2017/02/logo_puppet.svg'
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0770',
+  }
+->archive{'/var/lib/jenkins/userContent/ansible.svg':
+    ensure => present,
+    source => 'https://www.elao.com/images/logo_ansible.svg',
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0770',
+  }
+->archive{'/var/lib/jenkins/userContent/ansible_awx.svg':
+    ensure => present,
+    source => 'https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg',
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0770',
+  }
+->archive{'/var/lib/jenkins/userContent/chef.svg':
+    ensure => present,
+    source => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Chef_logo.svg'
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    mode    => '0770',
+  }
 }
