@@ -1,0 +1,32 @@
+  _____   _____  _     _        _____  _____  _______   __   _ _______ _______
+ |_____] |     | |     | |        |   |     |    |      | \  | |______    |   
+ |       |_____| |_____| |_____ __|__ |_____|    |    . |  \_| |______    |   
+                                                                              
+#####################################################
+System Information
+------------------
+Name:       <%= $facts[fqdn] %>                          
+Datacenter: <%= $facts[rakuten_datacenter] %>                          
+<% if $location::country_flag_emoji { -%>
+Country:    <%= $facts[location][country_flag_emoji] %>
+<% } -%>
+Uptime:     <%= $facts[uptime] %>                        
+CPU(<%= $facts[processorcount] %>):    <%= $facts[processor0] %> 
+Memory:     <%= $facts[memorysize] %>                    
+SwapSize:   <%= $facts[swapsize] %>
+OS Release: <%= $facts[operatingsystem] %> <%= $facts[operatingsystemrelease] %>
+
+Puppet Information
+------------------
+Master:     <%= $facts[puppet_master_server] %>
+Version:    <%= $facts[puppetversion] %>
+<% if $lastrun_time { -%>
+Last Run:   <%= $facts[lastrun_time] %>
+<% } -%>
+
+Update Information
+------------------
+OS:           <%= $facts[os_patching][package_update_count] %>
+Securiity:    <%= $facts[os_patching][security_package_update_count] %>
+
+#####################################################
