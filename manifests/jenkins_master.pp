@@ -358,50 +358,45 @@ class profiles::jenkins_master (
 ->file{'/var/lib/jenkins/bin/jenkins-cli.jar':
     ensure => file,
     source => '/var/cache/jenkins/war/WEB-INF/jenkins-cli.jar',
-    mode   => '0777'
+    mode   => '0777',
     owner  => 'root',
     group  => 'root',
   }
 ->file{'/var/lib/jenkins/bin/github_curl_owner_repo_size.sh':
-    ensure  => file,
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    mode    => '0770',
+    ensure => file,
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => '0770',
     source => 'puppet:///modules/profiles/github_curl_owner_repo_size.sh',
   }
 ->file{'/var/lib/jenkins/userContent':
-    ensure  => directory,
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    mode    => '0644',
-    source => 'puppet:///modules/profiles/github_curl_owner_repo_size.sh',
+    ensure => directory,
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => '0755',
   }
 ->archive{'/var/lib/jenkins/userContent/puppet.svg':
     ensure => present,
-    source => 'https://www.nutanix.com/wp-content/uploads/2017/02/logo_puppet.svg'
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    mode    => '0770',
+    source => 'https://www.nutanix.com/wp-content/uploads/2017/02/logo_puppet.svg',
+    user   => 'jenkins',
+    group  => 'jenkins',
   }
 ->archive{'/var/lib/jenkins/userContent/ansible.svg':
     ensure => present,
     source => 'https://www.elao.com/images/logo_ansible.svg',
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    mode    => '0770',
+    user   => 'jenkins',
+    group  => 'jenkins',
   }
 ->archive{'/var/lib/jenkins/userContent/ansible_awx.svg':
     ensure => present,
     source => 'https://raw.githubusercontent.com/ansible/awx-logos/master/awx/ui/client/assets/logo-login.svg',
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    mode    => '0770',
+    user   => 'jenkins',
+    group  => 'jenkins',
   }
 ->archive{'/var/lib/jenkins/userContent/chef.svg':
     ensure => present,
-    source => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Chef_logo.svg'
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    mode    => '0770',
+    source => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Chef_logo.svg',
+    user   => 'jenkins',
+    group  => 'jenkins',
   }
 }
