@@ -17,4 +17,24 @@ class profiles::kvm_host(){
   ]:
     ensure => 'latest'
   }
+  # sysctl.conf
+  # net.bridge.bridge-nf-call-ip6tables = 0
+  # net.bridge.bridge-nf-call-iptables = 0
+  # net.bridge.bridge-nf-call-arptables = 0
+  # This is needed to allow for PXEbooting when running DHCP or ProxyDHCP on the KVM host
+  sysctl{ 'net.bridge.bridge-nf-call-ip6tables':
+    ensure => 'present'
+    value  => '0'
+    comment => 'Disable IPv6 UDP filter on Bridge interfaces to allow PXE from guests when running DHCPD/DHCPPROXY on KVM Host'
+  }
+  sysctl{ 'net.bridge.bridge-nf-call-iptables':
+    ensure => 'present'
+    value  => '0'
+    comment => 'Disable IPv4 UDP filter on Bridge interfaces to allow PXE from guests when running DHCPD/DHCPPROXY on KVM Host'
+  }
+  sysctl{ 'net.bridge.bridge-nf-call-arptables':
+    ensure => 'present'
+    value  => '0'
+    comment => 'Disable ARP UDP filter on Bridge interfaces to allow PXE from guests when running DHCPD/DHCPPROXY on KVM Host'
+  }
 }
