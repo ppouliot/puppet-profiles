@@ -49,7 +49,7 @@ class profiles::jenkins_master (
     # Puppet Development kit
     'pdk',
     # Virtualbox/Vagrant
-    'virtualbox','jq','schroot','mercurial','bc',
+    'vagrant',virtualbox','jq','schroot','mercurial','bc',
     # Hardware Control Tools
     'ipmitool','freeipmi','openipmi',
   ]:
