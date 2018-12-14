@@ -3,7 +3,7 @@ class profiles::certbot_easydns {
     'debian':{
       $required_packages = 'software-properties-common'
       include apt
-      apt::ppa{'ppa:certbot/certbot'}
+      apt::ppa{'ppa:certbot/certbot':}
     }
     'redhat':{
       include ::epel
@@ -14,16 +14,10 @@ class profiles::certbot_easydns {
   }
   # Install packages if not installed already
 
-  ensure_packages({
-    'dns-lexicon' => {
-       provider => 'pip'
-    },
-    $required_packages,
-    'certbot'},
-    {'ensure' => 'latest'}
-  )
+  ensure_packages(['dns-lexicon'], { 'provider' => 'pip', 'ensure' => 'latest' })
+  ensure_packages([$required_packages,'certbot'], {'ensure' => 'latest'})
 
-  file{'/usr/local/bin/easydns_auth.sh':
+  file{'/etc/letsencrypt/easydns_auth.sh':
     ensure  => file,
     content => '#!/bin/bash
 
@@ -41,7 +35,7 @@ sleep 30
 ',
   }
 
- file{'/usr/local/bin/easydns_cleanup.sh':
+ file{'/etc/letsencrypt/easydns_cleanup.sh':
     ensure  => file,
     content => '#!/bin/bash
 
@@ -53,10 +47,10 @@ delete "${CERTBOT_DOMAIN}" TXT --name "_acme-challenge.${CERTBOT_DOMAIN}" \
 ',
   }
 
-  file{'/usr/local/bin/certbot_easydns_auto-renew.sh':
+  file{'/etc/letsencrypt/certbot_easydns_auto-renew.sh':
     ensure  => file,
     content => '#!/usr/bin/env bash
-certbot --manual --manual-auth-hook /usr/local/bin/easydns_auth.sh --manual-cleanup-hook /usr/local/bin/easydns_cleanup.sh --preferred-challenges=dns  --register-unsafely-without-email --agree-tos --manual-public-ip-logging-ok -d pouliot.net
+certbot --manual --manual-auth-hook /etc/letsencrypt/easydns_auth.sh --manual-cleanup-hook /etc/letsencrypt/easydns_cleanup.sh --preferred-challenges=dns  --register-unsafely-without-email --agree-tos --manual-public-ip-logging-ok -d pouliot.net
 ',
   }
 
