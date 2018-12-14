@@ -49,7 +49,7 @@ class profiles::jenkins_master (
     # Puppet Development kit
     'pdk',
     # Virtualbox/Vagrant
-    'vagrant',virtualbox','jq','schroot','mercurial','bc',
+    'vagrant','virtualbox','jq','schroot','mercurial','bc',
     # Hardware Control Tools
     'ipmitool','freeipmi','openipmi',
   ]:
@@ -348,8 +348,6 @@ class profiles::jenkins_master (
 #  jenkins_authorization_strategy { 'hudson.security.AuthorizationStrategy$Unsecured':
 #    ensure => 'present',
 #  }
-  jenkins::credentials{:
-  }
 ->file{'/var/lib/jenkins/bin':
     ensure  => directory,
     owner   => 'jenkins',
