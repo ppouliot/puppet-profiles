@@ -105,7 +105,7 @@ class profiles::jenkins_master (
     user_hash => {
        'jenkins' => {
          'password' => 'jenkins',
-         'email'    => 'jenkins@jenkins-master.rakops',
+         'email'    => 'jenkins@${fqdn}',
        },
     },
     plugin_hash                          => {
@@ -348,6 +348,8 @@ class profiles::jenkins_master (
 #  jenkins_authorization_strategy { 'hudson.security.AuthorizationStrategy$Unsecured':
 #    ensure => 'present',
 #  }
+  jenkins::credentials{:
+  }
 ->file{'/var/lib/jenkins/bin':
     ensure  => directory,
     owner   => 'jenkins',
