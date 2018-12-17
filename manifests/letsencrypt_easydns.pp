@@ -1,4 +1,4 @@
-class profiles::certbot_easydns {
+class profiles::letsencrypt_easydns {
   include ::letsencrypt
   ensure_packages(['dns-lexicon'], { 'provider' => 'pip', 'ensure' => 'latest' })
   ensure_packages(['dehydrated','dehydrated-hook-dns-tsig'], { 'ensure' => 'latest' })
