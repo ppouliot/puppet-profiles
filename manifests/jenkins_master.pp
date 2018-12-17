@@ -228,6 +228,7 @@ class profiles::jenkins_master (
       'icon-shim'                           => {},
       'jackson2-api'                        => {},
       'javadoc'                             => {},
+      'jdk-tool'                            => {},
       'jira'                                => {},
       'jsch'                                => {},
       'junit'                               => {},
