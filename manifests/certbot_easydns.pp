@@ -1,21 +1,6 @@
 class profiles::certbot_easydns {
-  case $::osfamily {
-    'debian':{
-      $required_packages = 'software-properties-common'
-      include apt
-      apt::ppa{'ppa:certbot/certbot':}
-    }
-    'redhat':{
-      include ::epel
-    }
-    default:{
-      warning("Certbot may not be installed on ${::fqdn}!")
-    }
-  }
-  # Install packages if not installed already
-
+  include ::letsencrypt
   ensure_packages(['dns-lexicon'], { 'provider' => 'pip', 'ensure' => 'latest' })
-  ensure_packages([$required_packages,'certbot'], {'ensure' => 'latest'})
 
   file{'/etc/letsencrypt/easydns_auth.sh':
     ensure  => file,
