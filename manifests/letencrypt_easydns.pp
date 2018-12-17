@@ -1,6 +1,7 @@
 class profiles::certbot_easydns {
   include ::letsencrypt
   ensure_packages(['dns-lexicon'], { 'provider' => 'pip', 'ensure' => 'latest' })
+  ensure_packages(['dehydrated','dehydrated-hook-dns-tsig'], { 'ensure' => 'latest' })
 
   file{'/etc/letsencrypt/easydns_auth.sh':
     ensure  => file,
