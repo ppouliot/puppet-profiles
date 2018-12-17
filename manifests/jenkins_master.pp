@@ -183,7 +183,6 @@ class profiles::jenkins_master (
       'dashboard-view'                      => {},
       'database-mysql'                      => {},
       'database'                            => {},
-      'declarative'                         => {},
       'deployment-notification'             => {},
       'display-url-api'                     => {},
       'docker-workflow'                     => {},
