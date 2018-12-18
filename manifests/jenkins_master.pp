@@ -32,6 +32,17 @@ class profiles::jenkins_master (
       server => 'keyserver.ubuntu.com',
     }
   }
+  # Use the Offical Oracle Virtualbox Repos
+  apt::source{'oracle-virtualbox':
+    comment  => 'The Offical Virtualbox Debian Repository',
+    location => 'https://download.virtualbox.org/virtualbox/debian',
+    release  => 'bionic',
+    repos    => 'contrib',
+    key      => {
+      id => 'B9F8D658297AF3EFC18D5CDFA2F683C52980AECF',
+      server => 'keyserver.ubuntu.com',
+    }
+  }
   class {'docker':
     tcp_bind                    => 'tcp://0.0.0.0:4243',
     socket_bind                 => 'unix:///var/run/docker.sock',
