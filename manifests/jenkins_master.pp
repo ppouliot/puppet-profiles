@@ -58,7 +58,7 @@ class profiles::jenkins_master (
     # httpasswd file management tools
     'apache2-utils','expect',
     # Puppet Development kit
-    'pdk',
+    'pdk','ruby-bundler',
     # Virtualbox/Vagrant
     'vagrant','virtualbox','jq','schroot','mercurial','bc',
     # Hardware Control Tools
