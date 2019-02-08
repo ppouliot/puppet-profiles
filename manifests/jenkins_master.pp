@@ -103,10 +103,8 @@ class profiles::jenkins_master (
   }
 
   Jenkins::Plugin{ version => 'latest', }
-  java::oracle { 'jdk8' :
-    ensure  => 'present',
-    version => '8',
-    java_se => 'jdk',
+  class { 'java' :
+    package => 'openjdk-8-jdk', 
   }
 ->class {'jenkins':
     version                              => 'latest',
