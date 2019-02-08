@@ -28,7 +28,9 @@ mod "aristanetworks/netdev_stdlib_eos", :latest
 
 # MAC
 mod "bjoernalbers/mysql_osx", :latest
-mod "gildas/homebrew", :latest
+# Depreciating module ->
+# mod "gildas/homebrew", :latest
+mod "thekevjames/homebrew", :latest
 mod "grahamgilbert/macdefaults", :latest
 mod "grahamgilbert/mac_facts", :latest
 mod "grahamgilbert/mac_admin", :latest
