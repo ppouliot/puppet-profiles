@@ -66,8 +66,10 @@ mod "aboe/chrony", :latest
 mod "albatrossflavour/os_patching", :latest
 mod "ajcrowe/confd", :latest
 # mod "ajjahn/dns", :latest
+#  commit adds newer concat
 mod "ajjahn/dns", # Using master for dns to support puppet-ipam
-   :git => 'https://github.com/ajjahn/puppet-dns',
+   :git => 'https://github.com/ppouliot/puppet-dns',
+#   :commit => '4cb6dfe377e2ea48498e181b630f4215f1117a2e'
    :branch => 'master'
 mod "ajjahn/samba", :latest
 mod "arioch/redis", :latest
@@ -111,6 +113,7 @@ mod "KyleAnderson/consul", :latest
 # mod "luxflux/openvpn", :latest
 # Currently adding support for proxydhcp in downstream
 mod "saz/dnsmasq", :latest
+mod "lboynton/rpmforge", :latest
 mod "liamjbennett/win_facts", :latest
 mod "lwf/remote_file", :latest
 #mod "maestrodev/ssh_keygen", :latest
@@ -127,6 +130,7 @@ mod "puppet/amanda", :latest
 mod "puppet/autofs", '4.3.0' #:latest
 mod "puppet/archive", :latest
 mod "puppet/unattended_upgrades", :latest
+mod "puppet/cron", :latest
 mod "puppet/corosync", :latest
 mod "puppet/community_kickstarts", :latest
 mod "puppet/dhcp", :latest
@@ -185,12 +189,24 @@ mod "puppetlabs/apt", :latest
 #  :git => 'https://github.com/puppetlabs/puppetlabs-apt',
 #  :branch => 'master'
 #  :tag => '3.0.0' 
+mod "puppetlabs/augeas_core", :latest
+mod "puppetlabs/cron_core", :latest
+mod "puppetlabs/host_core", :latest
+mod "puppetlabs/mount_core", :latest
+mod "puppetlabs/selinux_core", :latest
+mod "puppetlabs/sshkeys_core", :latest
+#mod "puppetlabs/yumrepo_core", :latest
+mod "puppetlabs/zfs_core", :latest
+mod "puppetlabs/zone_core", :latest
 mod "puppetlabs/aws", :latest
 mod "puppetlabs/azure", :latest
 mod "puppetlabs/catalog_preview", :latest
+mod "puppetlabs/cisco_ios", :latest
 mod "puppetlabs/ciscopuppet", :latest
 mod "puppetlabs/concat", :latest
+mod "puppetlabs/device_manager", :latest
 mod "puppetlabs/dsc", :latest
+mod "puppetlabs/dsc_lite", :latest
 mod "puppetlabs/dism", :latest
 mod "puppetlabs/docker", :latest
 mod "puppetlabs/dummy_service", :latest
@@ -216,6 +232,7 @@ mod "puppetlabs/postgresql", :latest
 #  :git => 'https://github.com/puppetlabs/puppetlabs-postgresql',
 #  :branch => 'master'
 mod "puppetlabs/powershell", :latest
+mod "puppetlabs/puppet_conf", :latest
 mod "puppetlabs/puppet_agent", :latest
 mod "puppetlabs/puppet_authorization", :latest
 mod "puppetlabs/puppetdb", :latest
@@ -240,6 +257,7 @@ mod "puppetlabs/vcsrepo", :latest
 mod "puppetlabs/win_desktop_shortcut", :latest
 mod "puppetlabs/wsus_client", :latest
 mod "puppetlabs/xinetd", :latest
+mod "razorsedge/vmwaretools",  :latest
 # need to use master until 1.8.0 is release due to problem w/ jenkins/manifests/repo/debian.pp
 # Location of Jenkins module changed to the voxpupuli repos
 mod "rtyler/jenkins", # :latest
@@ -325,7 +343,7 @@ mod "puppet/windows_time",
 
 mod  "openstack/aodh",
   :git    => 'https://github.com/openstack/puppet-aodh',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/autossh",
   :git    => 'https://github.com/openstack/puppet-autossh',
@@ -333,11 +351,11 @@ mod  "openstack/autossh",
 
 mod  "openstack/barbican",
   :git    => 'https://github.com/openstack/puppet-barbican',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/ceilometer",
   :git    => 'https://github.com/openstack/puppet-ceilometer',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/ceph",
   :git    => 'https://github.com/openstack/puppet-ceph',
@@ -345,7 +363,7 @@ mod  "openstack/ceph",
 
 mod  "openstack/cinder",
   :git    => 'https://github.com/openstack/puppet-cinder',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/cloudkitty",
   :git    => 'https://github.com/openstack/puppet-cloudkitty',
@@ -353,15 +371,15 @@ mod  "openstack/cloudkitty",
 
 mod  "openstack/congress",
   :git    => 'https://github.com/openstack/puppet-congress',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/designate",
   :git    => 'https://github.com/openstack/puppet-designate',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/ec2api",
   :git    => 'https://github.com/openstack/puppet-ec2api',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/freezer",
   :git    => 'https://github.com/openstack/puppet-freezer',
@@ -369,7 +387,7 @@ mod  "openstack/freezer",
 
 mod  "openstack/glance",
   :git    => 'https://github.com/openstack/puppet-glance',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/glare",
   :git    => 'https://github.com/openstack/puppet-glare',
@@ -377,31 +395,31 @@ mod  "openstack/glare",
 
 mod  "openstack/gnocchi",
   :git    => 'https://github.com/openstack/puppet-gnocchi',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/heat",
   :git    => 'https://github.com/openstack/puppet-heat',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/horizon",
   :git    => 'https://github.com/openstack/puppet-horizon',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/ironic",
   :git    => 'https://github.com/openstack/puppet-ironic',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/keystone",
   :git    => 'https://github.com/openstack/puppet-keystone',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/magnum",
   :git    => 'https://github.com/openstack/puppet-magnum',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/manila",
   :git    => 'https://github.com/openstack/puppet-manila',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/midonet",
   :git    => 'https://github.com/openstack/puppet-midonet',
@@ -409,7 +427,7 @@ mod  "openstack/midonet",
 
 mod  "openstack/mistral",
   :git    => 'https://github.com/openstack/puppet-mistral',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/monasca",
   :git    => 'https://github.com/openstack/puppet-monasca',
@@ -417,39 +435,39 @@ mod  "openstack/monasca",
 
 mod  "openstack/murano",
   :git    => 'https://github.com/openstack/puppet-murano',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/neutron",
   :git    => 'https://github.com/openstack/puppet-neutron',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/nova",
   :git    => 'https://github.com/openstack/puppet-nova',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/octavia",
   :git    => 'https://github.com/openstack/puppet-octavia',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/openstack_extras",
   :git    => 'https://github.com/openstack/puppet-openstack_extras',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/openstack_spec_helper",
   :git    => 'https://github.com/openstack/puppet-openstack_spec_helper',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/openstacklib",
   :git    => 'https://github.com/openstack/puppet-openstacklib',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/oslo",
   :git    => 'https://github.com/openstack/puppet-oslo',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/ovn",
   :git    => 'https://github.com/openstack/puppet-ovn',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/pacemaker",
   :git    => 'https://github.com/openstack/puppet-pacemaker',
@@ -457,7 +475,7 @@ mod  "openstack/pacemaker",
 
 mod  "openstack/panko",
   :git    => 'https://github.com/openstack/puppet-panko',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/qdr",
   :git    => 'https://github.com/openstack/puppet-qdr',
@@ -469,7 +487,7 @@ mod  "openstack/rally",
 
 mod  "openstack/sahara",
   :git    => 'https://github.com/openstack/puppet-sahara',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/setproxy",
   :git    => 'https://github.com/openstack/puppet-setproxy',
@@ -477,23 +495,23 @@ mod  "openstack/setproxy",
 
 mod  "openstack/swift",
   :git    => 'https://github.com/openstack/puppet-swift',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/tacker",
   :git    => 'https://github.com/openstack/puppet-tacker',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/tempest",
   :git    => 'https://github.com/openstack/puppet-tempest',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/tripleo",
   :git    => 'https://github.com/openstack/puppet-tripleo',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/trove",
   :git    => 'https://github.com/openstack/puppet-trove',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/vitrage",
   :git    => 'https://github.com/openstack/puppet-vitrage',
@@ -501,15 +519,15 @@ mod  "openstack/vitrage",
 
 mod  "openstack/vswitch",
   :git    => 'https://github.com/openstack/puppet-vswitch',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/watcher",
   :git    => 'https://github.com/openstack/puppet-watcher',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 
 mod  "openstack/zaqar",
   :git    => 'https://github.com/openstack/puppet-zaqar',
-  :branch => 'stable/pike'
+  :branch => 'stable/rocky'
 # Custom Fact
 mod  "ppouliot/rakuten_datacenters",
   :git    => 'git@github.rakops.com:raklab/puppet-rakuten_datacenters.git',
