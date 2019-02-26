@@ -303,6 +303,7 @@ class profiles::jenkins_master (
       'resource-disposer'                   => {},
       'saferestart'                         => {},
       'saltstack'                           => {},
+      'semantic-versioning-plugin'          => {'enable' => 'false'},
       'ssh-slaves'                          => {},
       'shared-workspace'                    => {},
       'ssh-agent'                           => {},
