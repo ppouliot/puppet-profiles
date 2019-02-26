@@ -103,12 +103,14 @@ class profiles::jenkins_master (
   }
 
   Jenkins::Plugin{ version => 'latest', }
-
-  class {'jenkins':
+  class { 'java' :
+    package => 'openjdk-8-jdk', 
+  }
+->class {'jenkins':
     version                              => 'latest',
     lts                                  => false,
     executors                            => 8,
-    install_java                         => true,
+    install_java                         => false,
     configure_firewall                   => true,
     config_hash                          => {
       'HTTP_PORT'                        => {'value' => '9000' }
