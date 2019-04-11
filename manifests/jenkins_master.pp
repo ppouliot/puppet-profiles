@@ -211,7 +211,6 @@ class profiles::jenkins_master (
       'durable-task'                        => {},
       'email-ext'                           => {},
       'ez-templates'                        => {},
-      'email-ext'                           => {},
       'favorite'                            => {},
       'gerrit'                              => {},
       'gerrit-trigger'                      => {},
