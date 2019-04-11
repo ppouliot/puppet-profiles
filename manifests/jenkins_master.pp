@@ -209,6 +209,7 @@ class profiles::jenkins_master (
       'docker-java-api'                     => {},
       'dockerhub-notification'              => {},
       'durable-task'                        => {},
+      'email-ext'                           => {},
       'ez-templates'                        => {},
       'email-ext'                           => {},
       'favorite'                            => {},
