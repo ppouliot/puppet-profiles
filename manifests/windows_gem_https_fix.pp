@@ -1,4 +1,5 @@
-# https://answers.microsoft.com/en-us/windows/forum/windows_10-update/on-windows-10-update/614348af-9b8b-4c0b-a07d-3a728f1db80f
+## Here is the actual fix.  Need to reimplement using this
+## https://raw.githubusercontent.com/glennsarti/dev-tools/master/RubyCerts.ps1 
 
 class profiles::windows_gem_https_fix {
 
