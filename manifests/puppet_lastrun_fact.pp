@@ -22,7 +22,7 @@ class profiles::puppet_lastrun_fact {
     mode    => '0777',
     source  => 'puppet:///modules/profiles/detect_puppet_lastrun.sh',
     require => Class['fetchfact'],
-  } ->
+  }
 
   exec{'Generating Puppet LastRUN information':
     command => 'puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > ${local_fact_path}/lastrun.json',
