@@ -21,7 +21,7 @@ class profiles::puppet_lastrun_fact {
     }
     default:{
       $local_facter_base_path = "/etc/puppetlabs/facter"
-      $puppet_lastrun_command = '/usr/local/bin/puppet'
+      $puppet_command = '/usr/local/bin/puppet'
       File{
         owner   => 'root',
         group   => 'root',
