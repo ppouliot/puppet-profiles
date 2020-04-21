@@ -9,12 +9,12 @@ class profiles::puppet_lastrun_fact {
         group   => 'root',
       }
     }
-
     'windows':{
       $local_facter_base_path = "C:/ProgramData/PuppetLabs/facter"
       File{
         owner   => 'Administrator',
         group   => 'Administrators',
+      }
     }
     default:{
       $local_facter_base_path = "/etc/puppetlabs/facter"
