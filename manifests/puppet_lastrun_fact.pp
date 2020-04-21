@@ -15,7 +15,7 @@ class profiles::puppet_lastrun_fact {
       $local_facter_base_path = 'C:/ProgramData/PuppetLabs/facter'
       $puppet_command = 'C:/Program Files/Puppet Labs/Puppet/puppet/bin/puppet'
       File{
-        owner   => 'Administrator',
+        owner   => 'Everyone',
         group   => 'Administrators',
       }
     }
