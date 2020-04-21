@@ -24,11 +24,9 @@ class profiles::puppet_lastrun_fact {
     require => Class['fetchfact'],
   } ->
 
-  if $puppet_binary_path_fact {
-    exec{'Generating Puppet LastRUN information':
-      command => "${puppet_binary_path_fact} lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > ${local_fact_path}/lastrun.json",
-      onlyif  => "${local_factor_base_path}/detect_puppet_lastrun.sh",
-    }
+  exec{'Generating Puppet LastRUN information':
+    command => 'puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > ${local_fact_path}/lastrun.json',
+    onlyif  => "${local_factor_base_path}/detect_puppet_lastrun.sh",
   }
 
 }
