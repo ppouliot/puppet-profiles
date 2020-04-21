@@ -25,8 +25,8 @@ class profiles::puppet_lastrun_fact {
   } ->
 
   exec{'Generating Puppet LastRUN information':
-    command => "${puppet_binary_path} lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > ${local_fact_path}/lastrun.json',
-    onlyif  => '/etc/puppetlabs/facter/detect_puppet_lastrun.sh',
+    command => "${puppet_binary_path} lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\' > ${local_fact_path}/lastrun.json",
+    onlyif  => "${local_factor_base_path}/detect_puppet_lastrun.sh",
   }
 
 }
