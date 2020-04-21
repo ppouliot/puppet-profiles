@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# puppet lastrun detect script (linux)
+
 PUPPET_LASTRUN=$(puppet lastrun)
 PUPPET_LASTRUN_RESPONSE="Error: 'lastrun' has no default action.  See \`puppet help lastrun\`."
 
@@ -12,3 +15,4 @@ else
   echo "Bad!"
   exit 1
 fi
+
