@@ -3,14 +3,17 @@ class profiles::puppet_lastrun_fact {
 
   case $::kernel {
     'Linux':{
-      $local_facter_base_path = "/etc/facter"
+      $local_facter_base_path = '/etc/facter'
+      $puppet_lastrun_command = '/usr/local/bin/puppet'
+
       File{
         owner   => 'root',
         group   => 'root',
       }
     }
     'windows':{
-      $local_facter_base_path = "C:/ProgramData/PuppetLabs/facter"
+      $local_facter_base_path = 'C:/ProgramData/PuppetLabs/facter'
+      $puppet_command = 'C:/Program Files/Puppet Labs/Puppet/puppet/bin/puppet'
       File{
         owner   => 'Administrator',
         group   => 'Administrators',
@@ -18,6 +21,7 @@ class profiles::puppet_lastrun_fact {
     }
     default:{
       $local_facter_base_path = "/etc/puppetlabs/facter"
+      $puppet_lastrun_command = '/usr/local/bin/puppet'
       File{
         owner   => 'root',
         group   => 'root',
@@ -34,7 +38,7 @@ class profiles::puppet_lastrun_fact {
   } ->
 
   exec{'Generating Puppet LastRUN information':
-    command => "${puppet_binary_path} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_fact_path}/lastrun.json",
+    command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_fact_path}/lastrun.json",
     onlyif  => "${local_factor_base_path}/detect_puppet_lastrun.sh",
   }
 
