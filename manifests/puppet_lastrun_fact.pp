@@ -4,7 +4,7 @@ class profiles::puppet_lastrun_fact {
   case $::kernel {
     'Linux':{
       $local_facter_base_path = '/etc/facter'
-      $puppet_lastrun_command = '/usr/local/bin/puppet'
+      $puppet_command = '/usr/local/bin/puppet'
 
       File{
         owner   => 'root',
