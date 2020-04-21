@@ -27,7 +27,7 @@ echo "puppet_binary_path=$PUPPET_BINARY_PATH"'
   }
   # Create a Fact to detect the puppet binary path.  This will assist on the first puppet run.
   file{'puppet_binary_path':
-    path    => "${local_fact_path}/puppet_binary_path.${local_fact_extesion}",
+    path    => "${local_fact_path}/puppet_binary_path.${local_fact_extension}",
     ensure  => 'file',
     content => $local_fact_content,
   }
