@@ -39,7 +39,7 @@ class profiles::puppet_lastrun_fact {
 
   exec{'Generating Puppet LastRUN information':
     command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_fact_path}/lastrun.json",
-    onlyif  => "${local_factor_base_path}/detect_puppet_lastrun.sh",
+    onlyif  => "${local_facter_base_path}/detect_puppet_lastrun.sh",
   }
 
 }
