@@ -22,7 +22,7 @@ echo "puppet_binary_path=$PUPPET_BINARY_PATH"'
       $local_fact_extension = 'ps1'
       $local_fact_content = '# Puppet Managed Fact: puppet_binary_path
 $puppet_binary_path = Get-Command puppet | select -expandproperty Path
-Write-Host  "puppet_binary_path=$puppet_binary_path'
+Write-Host  "puppet_binary_path=$puppet_binary_path"'
 
       File{
         owner   => 'Everyone',
