@@ -2,36 +2,54 @@
 class profiles::puppet_lastrun_fact {
 
   case $::kernel {
+
     'Linux':{
       $local_facter_base_path = '/etc/facter'
       $puppet_command = '/usr/local/bin/puppet'
       $detect_script = "detect_puppet_lastrun.sh"
+
       File{
         owner   => 'root',
         group   => 'root',
       }
+
+      Exec{
+        onlyif  => "${local_facter_base_path}/${detect_script}",
+      }
+
     }
+
     'windows':{
       $local_facter_base_path = 'C:/ProgramData/PuppetLabs/facter'
       $puppet_command = 'C:/Program Files/Puppet Labs/Puppet/puppet/bin/puppet'
       $detect_script = "detect_puppet_lastrun.ps1"
+
       File{
         owner   => 'Everyone',
         group   => 'Administrators',
       }
+
+      Exec{
+        onlyif  => "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -file ${local_facter_base_path}/${detect_script}",
+      }
+
     }
+
     default:{
       $local_facter_base_path = "/etc/puppetlabs/facter"
       $puppet_command = '/usr/local/bin/puppet'
       $detect_script = "${local_facter_base_path}/detect_puppet_lastrun.sh"
+
       File{
         owner   => 'root',
         group   => 'root',
       }
+
+      Exec{
+        onlyif  => "${local_facter_base_path}/${detect_script}",
+      }
     }
   }
-
-  $local_fact_path = "${local_factor_base_path}/facts.d"
 
   file{"${local_facter_base_path}/${detect_script}":
     ensure  => 'file',
@@ -41,9 +59,7 @@ class profiles::puppet_lastrun_fact {
   } ->
 
   exec{'Generating Puppet LastRUN information':
-    command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_fact_path}/lastrun.json",
-    onlyif  => "${local_facter_base_path}/${detect_script}",
-    require => Class['fetchfact'],
+    command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
   }
 
 }
