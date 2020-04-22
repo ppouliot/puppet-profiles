@@ -37,9 +37,7 @@ class profiles::puppet_lastrun_fact {
 
       Exec{
 #       command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
-#       onlyif  => "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -file ${local_facter_base_path}/${detect_script}",
-        onlyif  => file("${detect_script}"),
-        provider => 'powershell',
+        onlyif  => "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -file ${local_facter_base_path}/${detect_script}",
         require => Package['sed'],
       }
 
