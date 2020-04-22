@@ -14,7 +14,7 @@ class profiles::puppet_lastrun_fact {
       }
 
       Exec{
-#       command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
+#       command => "${puppet_command} lastrun info | sed 's/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
         onlyif  => "${local_facter_base_path}/${detect_script}",
       }
 
@@ -68,7 +68,7 @@ class profiles::puppet_lastrun_fact {
   } ->
 
   exec{'Generating Puppet LastRUN information':
-    command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
+    command => "${puppet_command} lastrun info | sed "s/^\ \ \"/\ \ \"lastrun_/g" > ${local_facter_base_path}/facts.d/lastrun.json",
   }
 
 }
