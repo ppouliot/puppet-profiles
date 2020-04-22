@@ -5,7 +5,7 @@ class profiles::puppet_lastrun_fact {
 
     'Linux':{
       $local_facter_base_path = '/etc/facter'
-      $puppet_command = '/usr/local/bin/puppet'
+      $puppet_command = '/usr/local/bin/puppet lastrun info | sed 's/^\ \ "/\ \ "lastrun_/g''
       $detect_script = 'detect_puppet_lastrun.sh'
 
       File{
@@ -14,7 +14,6 @@ class profiles::puppet_lastrun_fact {
       }
 
       Exec{
-#       command => "${puppet_command} lastrun info | sed 's/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
         onlyif  => "${local_facter_base_path}/${detect_script}",
       }
 
@@ -22,7 +21,7 @@ class profiles::puppet_lastrun_fact {
 
     'windows':{
       $local_facter_base_path = "C:/ProgramData/PuppetLabs/facter"
-      $puppet_command = '"C:/Program Files/Puppet Labs/Puppet/bin/puppet.bat"'
+      $puppet_command = '"C:/Program Files/Puppet Labs/Puppet/bin/puppet.bat" lastrun info | sed "s/^\ \ "\""/\ \ "\""lastrun_/g"'
       $detect_script = 'detect_puppet_lastrun.ps1'
 
       Package { provider => chocolatey, }
@@ -36,7 +35,6 @@ class profiles::puppet_lastrun_fact {
       }
 
       Exec{
-#       command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
         onlyif  => "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -file ${local_facter_base_path}/${detect_script}",
         require => Package['sed'],
       }
@@ -45,7 +43,7 @@ class profiles::puppet_lastrun_fact {
 
     default:{
       $local_facter_base_path = "/etc/puppetlabs/facter"
-      $puppet_command = '/usr/local/bin/puppet'
+      $puppet_command = '/usr/local/bin/puppet lastrun info | sed 's/^\ \ "/\ \ "lastrun_/g''
       $detect_script = 'detect_puppet_lastrun.sh'
 
       File{
@@ -54,7 +52,6 @@ class profiles::puppet_lastrun_fact {
       }
 
       Exec{
-#       command => "${puppet_command} lastrun info | sed \'s/^\ \ \"/\ \ \"lastrun_/g\' > ${local_facter_base_path}/facts.d/lastrun.json",
         onlyif  => "${local_facter_base_path}/${detect_script}",
       }
     }
@@ -68,7 +65,7 @@ class profiles::puppet_lastrun_fact {
   } ->
 
   exec{'Generating Puppet LastRUN information':
-    command => "${puppet_command} lastrun info | sed "s/^\ \ \"/\ \ \"lastrun_/g" > ${local_facter_base_path}/facts.d/lastrun.json",
+    command => "${puppet_command} > ${local_facter_base_path}/facts.d/lastrun.json",
   }
 
 }
