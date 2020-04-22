@@ -5,7 +5,7 @@ class profiles::puppet_lastrun_fact {
 
     'Linux':{
       $local_facter_base_path = '/etc/facter'
-      $puppet_command = '/usr/local/bin/puppet lastrun info | sed 's/^\ \ "/\ \ "lastrun_/g''
+      $puppet_command = '/usr/local/bin/puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\''
       $detect_script = 'detect_puppet_lastrun.sh'
 
       File{
@@ -43,7 +43,7 @@ class profiles::puppet_lastrun_fact {
 
     default:{
       $local_facter_base_path = "/etc/puppetlabs/facter"
-      $puppet_command = '/usr/local/bin/puppet lastrun info | sed 's/^\ \ "/\ \ "lastrun_/g''
+      $puppet_command = '/usr/local/bin/puppet lastrun info | sed \'s/^\ \ "/\ \ "lastrun_/g\''
       $detect_script = 'detect_puppet_lastrun.sh'
 
       File{
