@@ -30,7 +30,7 @@ class profiles::puppet_lastrun_fact {
       }
 
       Exec{
-        onlyif  => "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -file ${local_facter_base_path}/${detect_script}",
+        onlyif  => "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -file ${local_facter_base_path}/${detect_script}",
       }
 
     }
