@@ -7,6 +7,7 @@ class profiles::puppet_gems {
     'CFPropertyList',
     'generate-puppetfile',
     'ra10ke',
+    'ruby-pwsh',
     'hiera-eyaml',
     'slack-notifier',
     'minitar-cli',
@@ -22,7 +23,8 @@ class profiles::puppet_gems {
     'puppet-lint-spaceship_operator_without_tag-check',
     'puppet-lint-leading_zero-check',
     'puppet-lint-empty_string-check',
-    'puppet-lint-absolute_classname-check']:
+    'puppet-lint-absolute_classname-check',
+  ]:
   #  ensure          => present,
     ensure          => latest,
     provider        => gem,
