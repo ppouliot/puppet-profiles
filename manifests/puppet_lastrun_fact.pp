@@ -21,8 +21,8 @@ class profiles::puppet_lastrun_fact {
     }
 
     'windows':{
-      $local_facter_base_path = 'C:/ProgramData/PuppetLabs/facter'
-      $puppet_command = 'C:/Program Files/Puppet Labs/Puppet/bin/puppet.bat'
+      $local_facter_base_path = '"C:/ProgramData/PuppetLabs/facter"'
+      $puppet_command = '"C:/Program Files/Puppet Labs/Puppet/bin/puppet.bat"'
       $detect_script = 'detect_puppet_lastrun.ps1'
 
       Package { provider => chocolatey, }
