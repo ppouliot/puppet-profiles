@@ -27,6 +27,6 @@ class profiles::puppet_gems {
   ]:
   #  ensure          => present,
     ensure          => latest,
-    provider        => gem,
+    provider        => puppet_gem,
   }
 }
